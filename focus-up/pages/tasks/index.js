@@ -1,4 +1,6 @@
 import classes from './tasks.module.css'
+import Link from 'next/link';
+
 export default function Home() {
   return (
   //  <Nav className = {classes.nav}/>
@@ -9,8 +11,8 @@ export default function Home() {
 
   <div class={classes.buttons}>
       <button>Tasks</button>
-      <button>Timer</button>
-      <button>Topics</button>
+      <button><Link href = '/timer'> Timer </Link></button>
+      <button><Link href = '/topics'> Topics </Link></button>
       <button>Notes</button>
       </div>
   </div>

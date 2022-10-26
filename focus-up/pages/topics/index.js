@@ -1,5 +1,5 @@
 
-import classes from '../styles/Home.module.css'
+import classes from './topics.module.css'
 import Link from 'next/link';
 import { Fragment } from 'react'
 
@@ -10,10 +10,10 @@ export default function Home() {
   <nav className={classes.nav}>
     <h1 className={classes.navtitle}>FOCUS UP</h1>
   </nav>
-  <div className={classes.buttons}>
+  <div class={classes.buttons}>
       <button><Link href = '/tasks'> Tasks </Link></button>
       <button><Link href = '/timer'> Timer </Link></button>
-      <button><Link href = '/topics'> Topics </Link></button>
+      <button>Topics</button>
       <button>Notes</button>
       </div>
   </div>

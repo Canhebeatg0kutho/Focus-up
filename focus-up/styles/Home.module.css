@@ -31,6 +31,10 @@
   background-color: #2535b3;
 } */
 
+.buttons{
+  display: flex;
+  flex-direction: column;
+}
 .buttons > button:hover{
   background-color: aqua;
 }
