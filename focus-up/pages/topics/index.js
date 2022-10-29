@@ -8,7 +8,7 @@ export default function Home() {
   //  <Nav className = {classes.nav}/>
   <div> 
   <nav className={classes.nav}>
-    <h1 className={classes.navtitle}>FOCUS UP</h1>
+  <h1 className={classes.navtitle}><Link href = '/'>FOCUS RIGHT</Link></h1>
   </nav>
   <div class={classes.buttons}>
       <button><Link href = '/tasks'> Tasks </Link></button>

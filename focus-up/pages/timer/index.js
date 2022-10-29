@@ -8,7 +8,7 @@ export default function Home() {
   //  <Nav className = {classes.nav}/>
   <div> 
   <nav className={classes.nav}>
-    <h1 className={classes.navtitle}>FOCUS LEFT</h1>
+  <h1 className={classes.navtitle}><Link href = '/'>FOCUS LEFT</Link></h1>
   </nav>
   <div class={classes.buttons}>
       <button><Link href = '/tasks'> Tasks </Link></button>
@@ -16,6 +16,7 @@ export default function Home() {
       <button><Link href = '/topics'> Topics </Link></button>
       <button>Notes</button>
       </div>
+
   </div>
   )
 }
