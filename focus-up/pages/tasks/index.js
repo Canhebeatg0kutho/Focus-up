@@ -1,5 +1,7 @@
 import classes from './tasks.module.css'
 import Link from 'next/link';
+import ListState from '../../components/tasks/ListState';
+
 
 export default function Home() {
   return (
@@ -15,9 +17,7 @@ export default function Home() {
       <button><Link href = '/topics'> Topics </Link></button>
       <button>Notes</button>
   </div>
-  <div className={classes.notes}>
-         <textarea rows = "50" cols = "80" placeholder="Enter details here...">  </textarea>
-  </div>
+     <ListState/>
   </div>
   )
 }
