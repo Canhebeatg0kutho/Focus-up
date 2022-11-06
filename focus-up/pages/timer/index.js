@@ -2,8 +2,9 @@
 import classes from './timer.module.css'
 import Link from 'next/link';
 import { Fragment } from 'react'
-import Time from '../../components/Timer/Time';
-
+import Pomodoro from '../../components/Pomodoro/Pomodoro';
+import PlayButton from '../../components/Pomodoro/PlayButton';
+import PauseButton from '../../components/Pomodoro/PauseButton';
 export default function Home() {
   return (
   //  <Nav className = {classes.nav}/>
@@ -17,7 +18,8 @@ export default function Home() {
       <button><Link href = '/topics'> Topics </Link></button>
       <button>Notes</button>
       </div>
-     <Time countdownTimestampMs={543210}/>
+      <Pomodoro />
+
   </div>
   )
 }
