@@ -7,16 +7,16 @@ export default function Pomodoro(){
     const[minutes,setMinutes] = useState(0);
     const[seconds,setSeconds] = useState(5);
     const[displayMessage,setDisplayMessage]= useState(false);
-    const[isPaused,setPause] = useState(true);
+    const[isPaused,setPause] = useState(false);
 
     const isPausedRef = useRef(isPaused);
 
 
-    useEffect(() => {
-        
-        let interval = setInterval(()=>{
+    useEffect(() => {   
+        let interval = null; 
+        if(isPausedRef.current === false){
+         interval = setInterval(()=>{
             clearInterval(interval);
-           if(isPausedRef.current === false){
             if(seconds === 0 ){
                 if(minutes !== 0){
                     setSeconds(59);
@@ -32,12 +32,17 @@ export default function Pomodoro(){
             } else{
                 setSeconds(seconds - 1);
             }
-           }
+        
         }, 1000)
-    }, [seconds]);
+    }
+    else{
+        clearInterval(interval);
+    }
+    }, [seconds,isPaused]);
     
     const timerMinutes = minutes <10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    console.log(isPausedRef);
 
     return(
         <div className={classes.pomodoro}> 
@@ -49,10 +54,7 @@ export default function Pomodoro(){
             {isPaused 
             ? <PlayButton onClick={()=>{setPause(false); isPausedRef.current = false;}}/> 
             : <PauseButton onClick={()=>{setPause(true); isPausedRef.current = true;}}/>}
-        </div>
-      
-        
-        
+        </div>   
         </div>
     )
 }

@@ -18,9 +18,9 @@
   }
   
   .buttons > button{
-    background-color: #21222A; /* Green background */
-    border: 1px solid #61DAFB; /* Green border */
-    color: rgb(0, 0, 0); /* White text */
+    background-color: #61DAFB; /* Green background */
+    border: 1px solid #000000;
+        color: rgb(0, 0, 0); /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     width: 8%; /* Set a width if needed */
