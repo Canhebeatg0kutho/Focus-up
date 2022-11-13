@@ -7,7 +7,7 @@ export default function Pomodoro(){
     const[minutes,setMinutes] = useState(0);
     const[seconds,setSeconds] = useState(5);
     const[displayMessage,setDisplayMessage]= useState(false);
-    const[isPaused,setPause] = useState(false);
+    const[isPaused,setPause] = useState(true);
 
     const isPausedRef = useRef(isPaused);
 
@@ -24,6 +24,8 @@ export default function Pomodoro(){
                 } else{
                   let minutes = displayMessage ? 24 : 4
                   let seconds = 59;
+                  setPause(true);
+                  isPausedRef.current = true;
 
                   setSeconds(seconds);
                   setMinutes(minutes);

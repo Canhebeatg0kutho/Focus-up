@@ -1,15 +1,18 @@
 import classes from "./toDo.module.css"
- const ToDo = ({todo,handleToggle}) =>{
-    const handleClick = (e) => {
-        e.preventDefault()
-        handleToggle(e.currentTarget.id)
-    }
-
+export default  function Todo({}){
     return(
-        <div id={todo.id} key={todo.id + todo.task} name="todo" value={todo.id} onClick={handleClick} className={todo.complete ? "todo strike" : "todo"}>
-            {todo.task}
+        <div style={{display:"flex"}}>
+        <input type = "checkbox"/>
+        <li style={{
+            color: "white",
+            textDecoration: todo.completed ? "line-through" : null
+        }}>
+            {Todo.task}</li>
+        <button>X</button>
         </div>
-    );
-};
 
-export default ToDo;
+    )
+        
+    
+
+}

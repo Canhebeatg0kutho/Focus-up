@@ -1,6 +1,6 @@
 import classes from './tasks.module.css'
 import Link from 'next/link';
-import ListState from '../../components/tasks/ListState';
+import ListState from '../../components/tasks/App';
 
 
 export default function Home() {

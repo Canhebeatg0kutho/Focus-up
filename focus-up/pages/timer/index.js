@@ -17,7 +17,9 @@ export default function Home() {
       <button>Notes</button>
       </div>
       <div className = {classes.timer}>
-           <Pomodoro className = {classes.timeritem}/>
+        <div className = {classes.timeritem}> 
+           <Pomodoro />
+           </div>
       </div>
   </div>
   )

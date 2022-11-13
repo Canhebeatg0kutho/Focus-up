@@ -11,25 +11,40 @@
   font-weight: 700;
   font-size: 50px;
   margin-right: auto;
+  margin-left: auto;
 
 }
-
 
 .buttons{
   display: flex;
   flex-direction: column;
 }
+
 .buttons > button:hover{
   background-color: aqua;
 }
 
 .buttons > button{
-  background-color: #61DAFB; /* Green background */
-  border: 1px solid #000000; /* Green border */
-  color: rgb(0, 0, 0); /* White text */
-  padding: 10px 24px; /* Some padding */
-  cursor: pointer; /* Pointer/hand icon */
-  width: 8%; /* Set a width if needed */
-  display: block; /* Make the buttons appear below each other */
+  background-color: #61DAFB;
+  border: 1px solid #000000; 
+  color: rgb(0, 0, 0); 
+  padding: 10px 24px;
+  cursor: pointer;
+  width: 8%;
+  display: block; 
+}
+
+.title{
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(248, 3, 3);
+  padding: 5px;
+  font-size: 50px;
+  text-align: center;
+  background-color: #61DAFB;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
 }
 

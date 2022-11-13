@@ -1,25 +1,40 @@
+import { EDGE_UNSUPPORTED_NODE_APIS } from "next/dist/shared/lib/constants";
 import { useState } from "react";
+import uuid from "uuid";
+export default function ToDoForm(addTodo) {
+    const [todo, setTodo] = useState({
+        id:"",
+        task:"",
+        completed:false
+    });
 
-const ToDoForm = ({addTask}) => {
-    const [userInput, setUserInput] = useState('');
+    function handleTaskInputChange(e){
+        setTodo({...todo,task: e.target.value})
 
-    const handleChange = (e) => {
-        setUserInput(e.currentTarget.value)
     }
 
-    const handleSubmit = (e) => {
+    function handleSubmit(){
         e.preventDefault();
-        addTask(userInput);
-        setUserInput("");
+        if(todo.task.trim()){
+            addTodo({...todo,id: uuid.v4});
+            //reset task input
+            setTodo({...todo, task: ""});
+        }
     }
 
-    return (
+    return(
         <form onSubmit={handleSubmit}>
-            <input value={userInput} type="text" onChange={handleChange} placeholder="Enter task..."/>
-            <button>Submit</button>
+            <input 
+            name="task"
+            type="text"
+            value ={todo.task}
+            onChange={handleTaskInputChange}
+            />
+            <button type="submit">submit</button>
         </form>
-    );
+    )
 
-};
 
-export default ToDoForm;
+
+}
+

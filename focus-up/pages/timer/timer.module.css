@@ -21,7 +21,7 @@
   .buttons > button{
     background-color: #61DAFB; /* Green background */
     border: 1px solid #000000;
-        color: rgb(0, 0, 0); /* White text */
+    color: rgb(0, 0, 0); /* White text */
     padding: 10px 24px; /* Some padding */
     cursor: pointer; /* Pointer/hand icon */
     width: 8%; /* Set a width if needed */
@@ -31,10 +31,10 @@
   .timer{
     display: flex;
     flex-direction: row;
-    background-color: #fb6161;
     width: 100%;
   }
 
   .timeritem{
    margin-left: auto;    
+   margin-right: auto;
   }
