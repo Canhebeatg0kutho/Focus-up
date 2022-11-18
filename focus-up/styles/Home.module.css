@@ -15,24 +15,6 @@
 
 }
 
-.buttons{
-  display: flex;
-  flex-direction: column;
-}
-
-.buttons > button:hover{
-  background-color: aqua;
-}
-
-.buttons > button{
-  background-color: #61DAFB;
-  border: 1px solid #000000; 
-  color: rgb(0, 0, 0); 
-  padding: 10px 24px;
-  cursor: pointer;
-  width: 8%;
-  display: block; 
-}
 
 .title{
   border-style: solid;

@@ -1,5 +1,5 @@
 import classes from "./toDo.module.css"
-export default  function Todo({}){
+export default  function Todo({todo}){
     return(
         <div style={{display:"flex"}}>
         <input type = "checkbox"/>

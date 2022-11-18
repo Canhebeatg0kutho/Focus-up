@@ -5,7 +5,7 @@ import ToDoForm from "./ToDoForm";
 
 
 export default function ListState(){
-    const[todos,setTodos] = useState([]);
+    const[todos,setTodos] = useState(Tasks);
     function addTodo(todo){
         setTodos([todo,...todos]);
     }
