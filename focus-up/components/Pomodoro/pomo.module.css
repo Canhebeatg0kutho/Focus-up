@@ -1,0 +1,26 @@
+.pomodoro{
+    font-size: 6em;
+}
+
+.message{
+    font-size: 0.5em;
+    min-height: 1.3em;
+    margin-bottom:0.5em ;
+}
+
+.playButton{
+    background-color: transparent;
+    color: bisque;
+    border: 0;
+    display: inline-block;
+    width: 100px;
+}
+
+.pauseButton{
+    background-color: transparent;
+    color: bisque;
+    border: 0;
+    display: inline-block;
+    width: 100px;
+}
+

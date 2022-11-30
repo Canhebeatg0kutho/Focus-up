@@ -1,7 +1,7 @@
 .nav{
   display: flex;
   align-items: center;
-  background-color: #21222A;
+  background-color: black;
   height: 90px;
   padding: 30px 25px;
 }
@@ -11,22 +11,22 @@
   font-weight: 700;
   font-size: 50px;
   margin-right: auto;
+  margin-left: auto;
 
 }
-.ul{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 10%;
-  background-color: #21222A;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
+
+
+.title{
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(248, 3, 3);
+  padding: 5px;
+  font-size: 50px;
+  text-align: center;
+  background-color: #61DAFB;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: auto;
 }
-.li{
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-  background-color: #2535b3;
-}
+

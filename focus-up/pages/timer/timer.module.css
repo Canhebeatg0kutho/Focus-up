@@ -1,0 +1,40 @@
+.nav{
+    display: flex;
+    align-items: center;
+    background-color: black;
+    height: 90px;
+    padding: 30px 25px;
+  }
+  
+  .navtitle{
+    color: #61DAFB;
+    font-weight: 700;
+    font-size: 50px;
+    margin-right: auto;
+  
+  }
+
+  .buttons > button:hover{
+    background-color: aqua;
+  }
+  
+  .buttons > button{
+    background-color: #61DAFB; /* Green background */
+    border: 1px solid #000000;
+    color: rgb(0, 0, 0); /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 8%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+
+  .timer{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .timeritem{
+   margin-left: auto;    
+   margin-right: auto;
+  }
