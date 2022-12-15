@@ -1,7 +1,8 @@
 .strike {
     text-decoration: line-through;
- }
- 
-.todo {
     cursor: pointer;
-  }
+}
+
+.noStrike{
+    cursor: pointer;
+}
