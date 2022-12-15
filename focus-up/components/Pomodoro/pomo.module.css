@@ -10,7 +10,7 @@
 
 .playButton{
     background-color: transparent;
-    color: bisque;
+    color: rgb(68, 255, 130);
     border: 0;
     display: inline-block;
     width: 100px;
@@ -18,9 +18,12 @@
 
 .pauseButton{
     background-color: transparent;
-    color: bisque;
+    color: rgb(255, 0, 0);
     border: 0;
     display: inline-block;
     width: 100px;
 }
 
+.timer{
+    color:rgb(68, 255, 239);
+}
