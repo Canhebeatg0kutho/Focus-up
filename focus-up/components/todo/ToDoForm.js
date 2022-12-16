@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classes from "./todo.module.css"
 
 const ToDoForm = ({ addTask }) => {
 
@@ -20,8 +21,8 @@ const ToDoForm = ({ addTask }) => {
     return (
         <form onSubmit={handleSubmit}>
             {/* When the the userInput state changes, it calls the handleChange function */}
-            <input value={userInput} type="text" onChange={handleChange} placeholder="Enter task..."/>
-            <button>Submit</button>
+            <input className={classes.input}value={userInput} type="text" onChange={handleChange} placeholder="Enter task..."/>
+            <button className={classes.submit}>Submit</button>
         </form>
     );
 };

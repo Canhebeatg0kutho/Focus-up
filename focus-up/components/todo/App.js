@@ -4,6 +4,8 @@ import data from "./data.json";
 //components
 import ToDoList from "./ToDoList";
 import ToDoForm from './ToDoForm';
+import classes from "./todo.module.css"
+import Title from "./title"
 
 function App() {
   //State initialised to whatever is inside data json
@@ -36,10 +38,13 @@ function App() {
   }
 
   return (
-    <div>
+    <div className={classes.container}>
       {/* Creates props using toDoList state */}
+      <Title/>
+      <div className={classes.interact}>
       <ToDoList toDoList={toDoList} handleToggle={handleToggle} handleFilter= {handleFilter}/>
       <ToDoForm addTask={addTask}/>
+      </div>
     </div>
   );
 }

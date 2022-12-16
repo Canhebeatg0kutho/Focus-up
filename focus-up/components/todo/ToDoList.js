@@ -1,5 +1,6 @@
 import React from 'react';
 import ToDo from './ToDo';
+import classes from "./todo.module.css"
 
 //Passes in props 
 const ToDoList = ({toDoList, handleToggle, handleFilter}) => {
@@ -12,7 +13,7 @@ const ToDoList = ({toDoList, handleToggle, handleFilter}) => {
                 )
             })}
             {/* If button is pressed, it calls the handleFilter function passed down as a prop */}
-             <button style={{margin: '20px'}} onClick={handleFilter}>Clear Completed</button>
+             <button className={classes.delete}style={{margin: '20px'}} onClick={handleFilter}>Clear Completed</button>
         </div>
     );
 };
