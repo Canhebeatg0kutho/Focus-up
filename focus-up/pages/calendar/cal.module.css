@@ -2,3 +2,16 @@
     height: 500;
     margin: 50px;
 }
+
+.input{
+    width: 20%;
+    margin-right: 10px;
+}
+
+.start{
+    margin-right: 10px;
+}
+
+.end{
+    margin-right: 10px;
+}
