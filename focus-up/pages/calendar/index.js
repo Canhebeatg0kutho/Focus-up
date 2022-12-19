@@ -16,6 +16,7 @@ const locales = {
   "en-GB": require("date-fns/locale/en-GB")
 }
 
+//Localizes aspects of the calendar to the specific region
 const localizer = dateFnsLocalizer({
   format,
   parse,
@@ -65,7 +66,7 @@ return (
    <h2>Add new event</h2>
    <div>
     {/* Sets title variable to inputted value */}
-    <input type="text" placeholder="Add Title" className={classes.input} value={newEvent.title} onChange={(e) => setNewEvent({...newEvent,title: e.target.value})}/> 
+    <input type="text" placeholder="Add Title" className={classes.input} value={newEvent.title} onChange={(add) => setNewEvent({...newEvent,title: add.target.value})}/> 
     {/* Sets start parameter to selected value */}
     <DatePicker placeholderText="Start Date"   className={classes.start} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
     {/* Sets end parameter to selected value */}
