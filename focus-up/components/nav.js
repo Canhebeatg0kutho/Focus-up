@@ -1,4 +1,4 @@
-import classes from '../styles/Home.module.css'
+import classes from './nav.module.css'
 import Icon from './Calendar/CalIcon'
 import { useRouter } from 'next/router'
 import Link from 'next/link';
