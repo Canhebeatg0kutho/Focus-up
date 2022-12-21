@@ -9,7 +9,6 @@ export default function Pomodoro(){
     const[displayMessage,setDisplayMessage]= useState(false);
     const[isPaused,setPause] = useState(true);
 
-    //const isPausedRef = useRef(isPaused);
     let interval= null;
     //Anytime seconds is updated/ if the play button is pressed, run this code
     useEffect(() => {   
@@ -27,7 +26,6 @@ export default function Pomodoro(){
                   let min = displayMessage ? 24 : 4
                   let sec = 59;
                   setPause(true);
-                 // isPausedRef.current = true;
 
                   setSeconds(sec);
                   setMinutes(min);
@@ -48,7 +46,6 @@ export default function Pomodoro(){
     //Display formatting
     const timerMinutes = minutes <10 ? `0${minutes}` : minutes;
     const timerSeconds = seconds < 10 ? `0${seconds}` : seconds;
-   // console.log(isPausedRef);
 
 
     return(
@@ -60,8 +57,8 @@ export default function Pomodoro(){
         <div className={classes.timer}>{timerMinutes}:{timerSeconds}</div>
         <div> 
             {isPaused 
-            ? <PlayButton onClick={()=>{setPause(false); /*isPausedRef.current = false;*/}}/> 
-            : <PauseButton onClick={()=>{setPause(true); /*isPausedRef.current = true;*/}}/>}
+            ? <PlayButton onClick={()=>{setPause(false); }}/> 
+            : <PauseButton onClick={()=>{setPause(true); }}/>}
         </div>   
         </div>
     )
