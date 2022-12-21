@@ -6,7 +6,7 @@ import classes from "./todo.module.css"
 const ToDoList = ({toDoList, handleToggle, handleFilter}) => {
     return (
         <div>
-            {/* Mapping over toDoList prop to create individualt todos after it is called */}
+            {/* Mapping over toDoList prop to create individual todos after it is called */}
             {toDoList.map(todo => {
                 return (
                     <ToDo todo={todo} handleToggle={handleToggle} handleFilter={handleFilter}/>
