@@ -1,14 +1,17 @@
-import Nav from '../components/nav';
-import classes from '../styles/Home.module.css'
-import Buttons from '../components/Tabs/Buttons';
+import classes from "../styles/Home.module.css"
+const pic = new URL("../images/study.jpeg",import.meta.url)
 
-export default function Home() {
-  return (
-    
-  <div> 
-  <Nav/>
-  <h1 className={classes.title}>WELCOME TO FOCUS-UP!</h1>
-  <Buttons/>
-  </div>
-  )
+export default function Welcome(){
+    return(
+        <div>
+            <div className={classes.container}>
+            <div className={classes.imagecontainer}>
+            <img className={classes.image} src={pic}></img>
+            </div>
+            <div className={classes.words}>
+            <h1 className={classes.title}>FOCUS UP</h1>
+            </div>
+            </div>
+        </div>
+    )
 }
