@@ -2,9 +2,12 @@ import classes from "../styles/Home.module.css"
 import Logo from "../components/Logo/logo"
 import Signup from "../components/WelcomeButtons/signup"
 import Login from "../components/WelcomeButtons/login"
+import Popup from "reactjs-popup"
+import "reactjs-popup/dist/index.css"
 const pic = new URL("../images/study.jpeg",import.meta.url)
 
 export default function Welcome(){
+    
     return(
         <div>
             <div className={classes.container}>
