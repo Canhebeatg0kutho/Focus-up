@@ -1,6 +1,7 @@
 import classes from "../styles/Home.module.css"
 import Logo from "../components/Logo/logo"
 import Signup from "../components/WelcomeButtons/signup"
+import Login from "../components/WelcomeButtons/login"
 const pic = new URL("../images/study.jpeg",import.meta.url)
 
 export default function Welcome(){
@@ -16,6 +17,9 @@ export default function Welcome(){
             <h1 className={classes.para}>Join FOCUS-UP today</h1>
             <div className={classes.signup}>
             <Signup />
+            </div>
+            <div className={classes.signup}>
+            <Login />
             </div>
             </div>
             </div>
