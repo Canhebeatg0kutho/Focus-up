@@ -1,0 +1,8 @@
+.logout{
+    background-color: transparent;
+    color: bisque;
+    border: 0;
+    display: inline-block;
+    width: 100px;
+    cursor: pointer;
+}
