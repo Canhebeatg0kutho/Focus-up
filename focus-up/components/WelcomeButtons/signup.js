@@ -9,6 +9,10 @@ export default function Signup(){
     }
     return(
         <div>
+           {isOpen && <Popup
+            handleClose={togglePopup}
+            content={<Form/>}
+            />} 
             <button className={classes.signup} onClick={togglePopup}>
                 Sign Up
             </button>
@@ -17,10 +21,6 @@ export default function Signup(){
                 Login
             </button>
 
-           {isOpen && <Popup
-            handleClose={togglePopup}
-            content={<Form/>}
-            />} 
         </div>
     )
 }
