@@ -13,4 +13,7 @@ db.once('open',()=> console.error('Connected to database'))
 
 app.use(express.json())
 
-app.listen(3001,()=> console.log('Server Started'))
+const userRouter = require('./Authentication/route')
+app.use('/register', userRouter)
+
+app.listen(3000,()=> console.log('Server Started'))
