@@ -18,12 +18,8 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/login', async (req,res)=>{
-   const user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
   try{
-    const existingUser = await User.findOne()
+    const existingUser = await User.findOne({username:req.body.username, password:req.body.password})
     if(!existingUser){
       res.status(401).json ({
         message: "Login not successful",
@@ -32,10 +28,8 @@ router.post('/login', async (req,res)=>{
     }else{
       res.status(201).json(existingUser);
     }
-
   } catch (err){
     res.status(400).json({message: err.message})
   }
 })
-
 module.exports = router;
