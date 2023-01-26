@@ -25,15 +25,21 @@ router.post('/register', async (req, res) => {
 
 
 router.post('/login', async (req,res)=>{
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
   try{
-    const existingUser = await User.findOne({username:req.body.username, password:req.body.password})
+    const existingUser = await User.findOne({username:user.username})
     if(!existingUser){
       res.status(401).json ({
         message: "Login not successful",
         error: "User not found",
       })
     }else{
-      res.status(201).json(existingUser);
+        bcrypt.compare(user.password,existingUser.password).then((result)=>{
+        result ?  res.status(201).json(existingUser) :  res.status(401).json ({message: "Login not successful", error: "User not found",})
+      })
     }
   } catch (err){
     res.status(400).json({message: err.message})
