@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../schema/User");
+const bcrypt = require("bcryptjs");
 
 router.post('/register', async (req, res) => {
   const user = new User({
@@ -9,8 +10,14 @@ router.post('/register', async (req, res) => {
   });
 
   try {
-    const newUser = await user.save();
-    res.status(201).json(newUser);
+    bcrypt.hash(user.password,10).then(async (hash)=>{
+      const newUser = await User.create({
+        username: user.username,
+        password: hash
+      });
+      res.status(201).json(newUser);
+    })
+    
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
