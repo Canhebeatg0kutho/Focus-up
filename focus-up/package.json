@@ -7,15 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "devStart": "nodemon server.js"
+    "devStart": "nodemon ./backend/server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "connect-ensure-login": "^0.1.1",
     "dayjs": "^1.11.6",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.17.3",
     "mongoose": "^6.8.4",
     "next": "12.3.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "react": "18.2.0",
     "react-big-calendar": "^1.5.2",
     "react-calendar": "^4.0.0",

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const User = require("../schema/User");
 const bcrypt = require("bcryptjs");
+const passporrt = require('passport')
+
 
 router.post('/register', async (req, res) => {
   const user = new User({
@@ -44,5 +46,13 @@ router.post('/login', async (req,res)=>{
   } catch (err){
     res.status(400).json({message: err.message})
   }
+})
+
+router.get('/',(req,res)=>{
+  res.sendFile(__dirname+'../views/home.ejs');
+})
+
+router.get('/register',(req,res)=>{
+  res.sendFile(__dirname+'../pages/index.js');
 })
 module.exports = router;

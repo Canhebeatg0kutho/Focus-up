@@ -1,9 +1,23 @@
-require('dotenv').config()
+
+if(process.env.NODE_ENV !=='production'){
+    require('dotenv').config
+}
 
 const express = require("express")
 const { default: mongoose } = require("mongoose")
 const app = express()
 const Mongoose = require("mongoose")
+const bodyParser = require('body-parser')
+const flash = require('express-flash')
+
+
+
+
+const initializePassport= require('./backend/Passport/passport-config')
+const passporrt = require('passport')
+initializePassport(passporrt,
+username => users.find(user => user.username === username)
+)
 
 mongoose.connect('mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority')
 
@@ -13,8 +27,19 @@ db.once('open',()=> console.error('Connected to database'))
 
 app.use(express.json())
 app.set("view engine","ejs")
+app.use(flash())
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
 
-const userRouter = require('./Authentication/route')
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+app.use(bodyParser.urlencoded({extended: false}))
+
+const userRouter = require('./backend/Authentication/route')
 app.use('/users', userRouter)
 
 app.get("/",(req,res) => res.render("home"))
