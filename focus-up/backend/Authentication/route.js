@@ -48,11 +48,40 @@ router.post('/login', async (req,res)=>{
   }
 })
 
-router.get('/',(req,res)=>{
-  res.sendFile(__dirname+'../views/home.ejs');
+router.get('/', (req, res) => {
+  res.render('index.ejs', { name: req.user.username })
 })
 
-router.get('/register',(req,res)=>{
-  res.sendFile(__dirname+'../pages/index.js');
+router.get('/login', (req, res) => {
+  res.render('login.ejs')
 })
+
+router.get('/register', (req, res) => {
+  res.render('register.ejs')
+})
+
+router.delete('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+})
+
+
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
+
+
+
 module.exports = router;

@@ -9,14 +9,16 @@ const app = express()
 const Mongoose = require("mongoose")
 const bodyParser = require('body-parser')
 const flash = require('express-flash')
+const session = require('express-session')
 
 
 
 
 const initializePassport= require('./backend/Passport/passport-config')
-const passporrt = require('passport')
-initializePassport(passporrt,
-username => users.find(user => user.username === username)
+const passport = require('passport')
+initializePassport(passport,
+username => users.find(user => user.username === username),
+ id => users.find(user => user.id === id)
 )
 
 mongoose.connect('mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority')

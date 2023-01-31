@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "devStart": "nodemon ./backend/server.js"
+    "devStart": "nodemon server.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
