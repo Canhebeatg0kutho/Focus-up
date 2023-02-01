@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 const User = require("../schema/User");
 const bcrypt = require("bcryptjs");
-const passporrt = require('passport')
+const passport = require('passport')
+const app = express()
+app.set("view engine","ejs")
 
 
-router.post('/register', async (req, res) => {
+router.post('/register',checkNotAuthenticated, async (req, res) => {
   const user = new User({
     username: req.body.username,
     password: req.body.password
@@ -19,14 +21,16 @@ router.post('/register', async (req, res) => {
       });
       res.status(201).json(newUser);
     })
-    
+    res.redirect('/login')
+
   } catch (err) {
     res.status(400).json({ message: err.message });
+    res.redirect('/register')
   }
 });
 
 
-router.post('/login', async (req,res)=>{
+router.post('/login',checkNotAuthenticated, async (req,res)=>{
   const user = new User({
     username: req.body.username,
     password: req.body.password
@@ -48,16 +52,22 @@ router.post('/login', async (req,res)=>{
   }
 })
 
-router.get('/', (req, res) => {
-  res.render('index.ejs', { name: req.user.username })
+router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+
+router.get('/',checkAuthenticated, (req, res) => {
+  res.render('index.ejs', { username: req.user.username })
 })
 
-router.get('/login', (req, res) => {
-  res.render('login.ejs')
+router.get('/login',checkNotAuthenticated, (req, res) => {
+  res.render('login')
 })
 
-router.get('/register', (req, res) => {
-  res.render('register.ejs')
+router.get('/register',checkNotAuthenticated, (req, res) => {
+  res.render('register')
 })
 
 router.delete('/logout', (req, res) => {
@@ -71,7 +81,6 @@ function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next()
   }
-
   res.redirect('/login')
 }
 
