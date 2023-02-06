@@ -1,7 +1,7 @@
 import classes from "./buttons.module.css"
 import Popup from "./popup"
 import { useState } from "react"
-import Form from "./form"
+import Details from "./form"
 export default function Signup(){
     const [isOpen,setIsOpen] = useState(false)
     const togglePopup = () =>{
@@ -9,10 +9,7 @@ export default function Signup(){
     }
     return(
         <div>
-           {isOpen && <Popup
-            handleClose={togglePopup}
-            content={<Form/>}
-            />} 
+           {isOpen && <Popup handleClose={togglePopup} content={<Details/>} />} 
             <button className={classes.signup} onClick={togglePopup}>
                 Sign Up
             </button>

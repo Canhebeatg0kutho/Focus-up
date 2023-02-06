@@ -3,7 +3,6 @@ import Logo from "../components/Logo/logo"
 import LogoSmall from "../components/LogoSmall/logo"
 import Signup from "../components/WelcomeButtons/signup"
 import Home from "../pages/home/index"
-import{BrowserRouter, Route, Switch } from 'react-router-dom'
 const pic = new URL("../images/study.jpeg",import.meta.url)
 
 export default function Welcome(){
