@@ -25,12 +25,14 @@ const handleSubmit = (e) => {
 }
 
     return(
-            <Form onSubmit={handleSubmit} className={classes.container}>
+        <div className={classes.container}>
+            <form onSubmit={handleSubmit}>
             <h3 className={classes.email}>Enter username *</h3>
             <input className={classes.input} type="text" value={username} placeholder="Enter username..." onChange={(e) => setUser(e.target.value)} required />
             <h3 className={classes.email}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
-            </Form>
+            </form>
+        </div>
     )
 }
