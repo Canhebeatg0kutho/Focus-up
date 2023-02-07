@@ -11,6 +11,8 @@ const bodyParser = require('body-parser')
 const flash = require('express-flash')
 const session = require('express-session')
 const User = require("./backend/schema/User");
+const cors = require('cors');
+
 var path = require("path");
 
 
@@ -32,6 +34,7 @@ const db = mongoose.connection
 db.on('error',(error)=> console.error(error))
 db.once('open',()=> console.error('Connected to database'))
 
+app.use(cors())
 app.use(express.json())
 app.set("view engine","ejs")
 app.use(flash())
