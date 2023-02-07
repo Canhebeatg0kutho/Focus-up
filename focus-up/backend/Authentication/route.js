@@ -21,11 +21,9 @@ router.post('/register',checkNotAuthenticated, async (req, res) => {
       });
       res.status(201).json(newUser);
     })
-    res.redirect('/login')
 
   } catch (err) {
     res.status(400).json({ message: err.message });
-    res.redirect('/register')
   }
 });
 
