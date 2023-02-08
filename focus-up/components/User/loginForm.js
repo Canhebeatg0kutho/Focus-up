@@ -1,26 +1,23 @@
-import Link from "next/link"
 import classes from "./buttons.module.css"
-import Home from "../../pages/home/index"
-import{BrowserRouter, Route, Switch } from 'react-router-dom'
 import { useState } from "react"
 import axios from "axios"
 export default function Form(){
     const [username, setUser] = useState("")
     const [password, setPassword] = useState("")
-    const [isRegister, setRegister] = useState(false)
+    const [isLogin, setLogin] = useState(false)
 
 const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
         method: "post",
-        url:"http://localhost:3000/users/register",
+        url:"http://localhost:3000/users/login",
         data:{
             username,
             password,
         }
     }
     axios(configuration)
-    .then((result) => {setRegister(true);})
+    .then((result) => {setLogin(true);})
     .catch((error) => {error = new Error();})
 }
 
@@ -32,8 +29,10 @@ const handleSubmit = (e) => {
             <h3 className={classes.email}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
-            { isRegister ? ( <p className="text-success">You Are Registered Successfully</p>  ) : (<p className="text-danger">You Are Not Registered</p> )}
+            { isLogin ? ( <p className={classes.success}>You have Logged in Successfully</p>  ) : (<p className={classes.failure}>This user does not exist</p> )}
             </form>
         </div>
     )
 }
+
+
