@@ -1,6 +1,10 @@
 import classes from "./buttons.module.css"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import {Routes,Route,useNavigate} from "react-router-dom"
 import axios from "axios"
+import Link from 'next/link';
+
+import Home from "../../pages/home/index"
 export default function Form(){
     const [username, setUser] = useState("")
     const [password, setPassword] = useState("")
@@ -21,6 +25,8 @@ const handleSubmit = (e) => {
     .catch((error) => {error = new Error();})
 }
 
+
+
     return(
         <div className={classes.container}>
             <form onSubmit={handleSubmit}  >
@@ -29,7 +35,7 @@ const handleSubmit = (e) => {
             <h3 className={classes.email}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
-            { isRegister ? ( <p className={classes.success}>You Are Registered Successfully</p>  ) : (<p className={classes.failure}>You Are Not Registered</p> )}
+            { isRegister ? ( <p className={classes.success}>You Are Registered Successfully</p>  )  : (<p className={classes.failure}>You Are Not Registered</p> )}
             </form>
         </div>
     )
