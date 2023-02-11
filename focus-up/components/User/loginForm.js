@@ -1,10 +1,12 @@
 import classes from "./buttons.module.css"
-import { useState } from "react"
+import { useState,useEffect } from "react"
 import axios from "axios"
+import { useRouter } from "next/router"
 export default function Form(){
     const [username, setUser] = useState("")
     const [password, setPassword] = useState("")
     const [isLogin, setLogin] = useState(false)
+    const router = useRouter()
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,6 +23,14 @@ const handleSubmit = (e) => {
     .catch((error) => {error = new Error();})
 }
 
+useEffect(() => {
+    if (isLogin) {
+        router.push('/home');
+    }
+}, [isLogin])
+
+
+
     return(
         <div className={classes.container}>
             <form onSubmit={handleSubmit}  >
@@ -29,7 +39,7 @@ const handleSubmit = (e) => {
             <h3 className={classes.email}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
-            { isLogin ? ( <p className={classes.success}>You have Logged in Successfully</p>  ) : (<p className={classes.failure}>This user does not exist</p> )}
+            { isLogin ? <p>Redirecting...</p> : (<p className={classes.failure}>This user does not exist</p> )}
             </form>
         </div>
     )
