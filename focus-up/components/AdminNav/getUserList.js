@@ -1,26 +1,31 @@
-import classes from "./buttons.module.css"
 import { useState,useEffect } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
+import classes from "./adminNav.module.css"
+
 export default function List(){
+    const [users,setuser] = useState([])
 
 const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
-        method: "post",
-        url:"http://localhost:3000/users/login",
-        data:{
-            username,
-            password,
-        }
+        method: "get",
+        url:"http://localhost:3000/users"
     }
     axios(configuration)
-    .then((result) => {setLogin(true);})
+    .then((result) => {setuser(result.data)})
     .catch((error) => {error = new Error();})
 }
     return(
-        <div className={classes.container}>
-            <button onClick={handleSubmit} className={classes.submit}>GET</button>
+        <div >
+            <button onClick={handleSubmit}>GET</button>
+            {users.length > 0 && (
+                <ul>
+                    {users.map((user)=>(
+                        <li className={classes.list} key={user.id}>{user.username}</li>
+                    ))}
+                </ul>
+            )}
         </div>
     )
 }

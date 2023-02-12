@@ -8,11 +8,8 @@ const app = express()
 app.set("view engine","ejs")
 
 router.get('/', async (req,res) =>{
-  const user = new User({
-    username: req.params.username
-  });
   try{
-       const Allusers=await User.find(user.username)
+       const Allusers=await User.find()
        res.json(Allusers)
   } catch (err){
       res.status(500).json({message: err.message})
