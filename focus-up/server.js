@@ -2,7 +2,6 @@
 if(process.env.NODE_ENV !=='production'){
     require('dotenv').config
 }
-
 const express = require("express")
 const { default: mongoose } = require("mongoose")
 const app = express()
@@ -49,15 +48,32 @@ app.use(passport.session())
 
 app.use(bodyParser.urlencoded({extended: false}))
 
-const userRouter = require('./backend/Authentication/route')
-const { default: next } = require('next')
+const userRouter = require('./backend/Authentication/userRoute')
 app.use('/users', userRouter)
+
+const adminRouter = require('./backend/Authentication/adminRoute')
+app.use('/admin',adminRouter)
 
 app.use((req,res,next)=>{
   res.status(401).send('NOT_FOUND');
 })
 
 app.set('views', path.join(__dirname, '/views'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 app.post('/register',checkNotAuthenticated, async (req, res) => {
