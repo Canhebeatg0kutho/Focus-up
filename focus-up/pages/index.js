@@ -3,6 +3,7 @@ import Logo from "../components/Logo/logo"
 import LogoSmall from "../components/LogoSmall/logo"
 import Signup from "../components/User/signup"
 import Login from "../components/User/login"
+import Admin from "../components/User/admin"
 const pic = new URL("../images/study.jpeg",import.meta.url)
 
 export default function Welcome(){
@@ -18,8 +19,11 @@ export default function Welcome(){
             <h1 className={classes.phrase}>Get stuck in</h1>
             <h1 className={classes.para}>Join FOCUS-UP today</h1>
             <div className={classes.signup}>
+            <h3 className={classes.role}>Users:</h3>
             <Signup/>
             <Login/>
+            <h3 className={classes.role}>Admins:</h3>
+            <Admin/>
             </div>
             </div>
             </div>
