@@ -54,6 +54,9 @@ app.use('/users', userRouter)
 const adminRouter = require('./backend/Authentication/adminRoute')
 app.use('/admin',adminRouter)
 
+const todoRouter = require('./backend/Authentication/todoRoute')
+app.use('/todo',todoRouter)
+
 app.use((req,res,next)=>{
   res.status(401).send('NOT_FOUND');
 })
