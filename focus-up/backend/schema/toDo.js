@@ -1,10 +1,5 @@
 const Mongoose = require("mongoose")
 const ToDoSchema = new Mongoose.Schema({
-    id:{
-        type:Number,
-        unique:true,
-        required:true,
-    },
     task: {
         type:String,
         required:true,
