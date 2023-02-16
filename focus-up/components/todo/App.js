@@ -11,6 +11,7 @@ import Title from "./title"
 function App() {
   //State initialised to whatever is inside data json
   const [ toDoList, setToDoList ] = useState([]);
+  
   const configuration = {
     method: "get",
     url:"http://localhost:3000/todo"
@@ -19,14 +20,12 @@ axios(configuration)
 .then((result) => {setToDoList(result.data)})
 .catch((error) => {error = new Error();})
 
-
-
   //Pass in id of todo clicked
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
     // If the id's complete parameter is set to the opposite of its current state, otherwise it displays as normal
-    let mapped = toDoList.map(task => {
-      return task.id === Number(id) ? { ...task, complete: !task.complete } : { ...task};
+    let mapped = toDoList.map(todo => {
+      return todo._id === id ? { ...todo, complete: !todo.complete } : { ...todo};
     });
     setToDoList(mapped);
   }
@@ -41,9 +40,9 @@ axios(configuration)
 
   //This function takes in userInput from form class. Creates a copy of the toDoList Array, then sets the copy variable to include the existing array copied,
   // And adds a todo with an incremented id, a task which is assigned the userInput, and sets complete to false
-  const addTask = (userInput ) => {
+  const addTask = (task ) => {
     let copy = [...toDoList];
-    copy = [...copy, { id: toDoList.length + 1, task: userInput, complete: false }];
+    copy = [...copy, { id: toDoList._id, task: task, complete: false }];
     setToDoList(copy);
   }
 
