@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-//mock data
 import data from "./data.json";
+import axios from "axios"
+
 //components
 import ToDoList from "./ToDoList";
 import ToDoForm from './ToDoForm';
@@ -9,9 +10,16 @@ import Title from "./title"
 
 function App() {
   //State initialised to whatever is inside data json
-  const [ toDoList, setToDoList ] = useState(data);
+  const [ toDoList, setToDoList ] = useState([]);
+  const configuration = {
+    method: "get",
+    url:"http://localhost:3000/todo"
+}
+axios(configuration)
+.then((result) => {setToDoList(result.data)})
+.catch((error) => {error = new Error();})
 
-  
+
 
   //Pass in id of todo clicked
   const handleToggle = (id) => {
