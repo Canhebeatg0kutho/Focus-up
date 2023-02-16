@@ -11,6 +11,8 @@ function App() {
   //State initialised to whatever is inside data json
   const [ toDoList, setToDoList ] = useState(data);
 
+  
+
   //Pass in id of todo clicked
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
