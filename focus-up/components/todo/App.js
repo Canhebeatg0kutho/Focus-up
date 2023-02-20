@@ -37,7 +37,7 @@ console.log([toDoList])
   const handleFilter = () => {
     const deleted = {
       method: "delete",
-      url:"http://localhost:3000/todo/delete/63ee2ded6c1a17c92060f74d"
+      url:`http://localhost:3000/todo/delete/${id}`
     }
     axios(deleted)
     .then((result) => {setToDoList(result.data)})
