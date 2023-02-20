@@ -22,8 +22,6 @@ axios(configuration)
 .catch((error) => {error = new Error();})
 console.log([toDoList])
 }, [])
-
-
   //Pass in id of todo clicked
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
@@ -37,6 +35,14 @@ console.log([toDoList])
 
   //filters a new array filled with tasks whose complete parameter say "false"
   const handleFilter = () => {
+    const deleted = {
+      method: "delete",
+      url:"http://localhost:3000/todo/delete/63ee2ded6c1a17c92060f74d"
+    }
+    axios(deleted)
+    .then((result) => {setToDoList(result.data)})
+    .catch((error) => {error = new Error();})
+
     let filtered = toDoList.filter(task => {
       return !task.complete;
     });
@@ -45,8 +51,8 @@ console.log([toDoList])
 
   //This function takes in userInput from form class. Creates a copy of the toDoList Array, then sets the copy variable to include the existing array copied,
   // And adds a todo with an incremented id, a task which is assigned the userInput, and sets complete to false
-  const addTask = () => {
-    let copy = [...toDoList];
+  const addTask = (task,completed) => {
+    let copy = [...toDoList, {task: task, complete: completed}];
     setToDoList(copy);
   }
 

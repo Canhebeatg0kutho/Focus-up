@@ -24,5 +24,18 @@ router.post('/', async (req, res) => {
     }
   })
   
+  router.delete('/delete/:id', async(req,res)=>{
+    const id = req.params.id
+    await Todo.findById(id)
+      .then(todo => todo.remove())
+      .then(todo =>
+        res.status(201).json({ message: "User successfully deleted", todo })
+      )
+      .catch(error =>
+        res
+          .status(400)
+          .json({ message: "An error occurred", error: error.message })
+      )
+  })
   
   module.exports = router;
