@@ -20,8 +20,8 @@ const configuration = {
 axios(configuration)
 .then((result) => {setToDoList(result.data)})
 .catch((error) => {error = new Error();})
-
-}, [toDoList])
+console.log([toDoList])
+}, [])
 
 
   //Pass in id of todo clicked
@@ -29,8 +29,9 @@ axios(configuration)
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
     // If the id's complete parameter is set to the opposite of its current state, otherwise it displays as normal
     let mapped = toDoList.map(todo => {
-      return toDoList._id === id ? { ...toDoList, complete: !toDoList.complete } : { ...todo};
+      return todo._id === id ? { ...todo, complete: !todo.complete } : { ...todo};
     });
+    console.log(mapped)
     setToDoList(mapped);
   }
 
