@@ -22,6 +22,7 @@ axios(configuration)
 .catch((error) => {error = new Error();})
 console.log([toDoList])
 }, [])
+
   //Pass in id of todo clicked
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
@@ -35,14 +36,15 @@ console.log([toDoList])
 
   //filters a new array filled with tasks whose complete parameter say "false"
   const handleFilter = () => {
-    const deleted = {
-      method: "delete",
-      url:"http://localhost:3000/todo/delete/63ee2ded6c1a17c92060f74d"
-    }
-    axios(deleted)
-    .then((result) => {setToDoList(result.data)})
-    .catch((error) => {error = new Error();})
+    // const deleted = {
+    //   method: "delete",
+    //   url:"http://localhost:3000/todo/delete/{id}"
+    // }
+    // axios(deleted)
+    // .then((result) => {setToDoList(result.data)})
+    // .catch((error) => {error = new Error();})
 
+    
     let filtered = toDoList.filter(task => {
       return !task.complete;
     });
