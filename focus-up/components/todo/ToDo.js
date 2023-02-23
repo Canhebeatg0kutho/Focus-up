@@ -12,7 +12,7 @@ const ToDo = ({todo, handleToggle}) => {
     return (
         // Checks if task is completed using "complete" param in data.js. If true, it uses strike as classname, if false, is assigned noStrike as classname
         //When the task is clicked, it calls the handleClick handler
-        <div id={todo._id} key={todo._id +todo.task} name ="todo" value={todo._id} onClick={handleClick} className={todo.complete ? classes.strike : classes.noStrike}>
+        <div id={todo._id} key={todo.id +todo.task} name ="todo" value={todo._id} onClick={handleClick} className={todo.complete ? classes.strike : classes.noStrike}>
             {/* Gets individual task created in toDoList mapping function. Uses "Task" from data.json as parameter */}
             {todo.task}
         </div>

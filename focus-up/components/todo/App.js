@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import data from "./data.json";
 import axios from "axios"
 
 //components
@@ -36,18 +35,14 @@ console.log([toDoList])
 
   //filters a new array filled with tasks whose complete parameter say "false"
   const handleFilter = () => {
-    const deleted = {
-      method: "delete",
-      url:"http://localhost:3000/todo/delete/63ee2ded6c1a17c92060f74d"
-    }
-    axios(deleted)
-    .then((result) => {setToDoList(result.data)})
-    .catch((error) => {error = new Error();})
-
-    let filtered = toDoList.filter(task => {
-      return !task.complete;
-    });
-    setToDoList(filtered);
+    axios.delete("http://localhost:3000/todo/delete/63f3a5b71ea71a4413ec174c")
+      .then(() => {
+        let filtered = toDoList.filter(task => !task.complete);
+        setToDoList(filtered);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   //This function takes in userInput from form class. Creates a copy of the toDoList Array, then sets the copy variable to include the existing array copied,

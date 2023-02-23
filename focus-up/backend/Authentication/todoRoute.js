@@ -26,10 +26,10 @@ router.post('/', async (req, res) => {
   
   router.delete('/delete/:id', async(req,res)=>{
     const id = req.params.id
-    await Todo.findOne({id_: id, complete:true})
-      .then(task => task.remove())
-      .then(task =>
-        res.status(201).json({ message: "User successfully deleted", task })
+    await Todo.findOne({ complete:true})
+      .then(task => task)
+      .then(
+        res.status(201).json({ message: "Tasks successfully deleted", Todo })
       )
       .catch(error =>
         res
