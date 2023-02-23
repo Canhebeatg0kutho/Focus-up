@@ -6,7 +6,7 @@ const ToDoSchema = new Mongoose.Schema({
     },
     complete:{
         type:Boolean,
-        default:false
+        default:true
     },
 })
 

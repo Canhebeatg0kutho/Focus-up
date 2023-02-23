@@ -24,18 +24,19 @@ router.post('/', async (req, res) => {
     }
   })
   
-  router.delete('/delte/:id', async (req, res) => {
-    const id = req.params.id;
-    try {
-      const task = await Todo.findOne({_id: id, complete: false});
-      if (!task) {
-        return res.status(404).json({message: "Task not found"});
-      }
-      await task.remove();
-      res.status(200).json({message: "Task successfully deleted", task});
-    } catch(err) {
-      res.status(500).json({message: err.message});
-    }
-  });
+  router.delete('/delete/:id', async(req,res)=>{
+    const id = req.params.id
+    await Todo.findOne({id_: id, complete:true})
+      .then(task => task.remove())
+      .then(task =>
+        res.status(201).json({ message: "User successfully deleted", task })
+      )
+      .catch(error =>
+        res
+          .status(400)
+          .json({ message: "An error occurred", error: error.message })
+      )
+  })
+  
   
   module.exports = router; 
