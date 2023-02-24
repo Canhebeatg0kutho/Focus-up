@@ -26,6 +26,7 @@ console.log([toDoList])
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
     // If the id's complete parameter is set to the opposite of its current state, otherwise it displays as normal
+    axios.patch(`http://localhost:3000/todo/update/${id}`)
     let mapped = toDoList.map(todo => {
       return todo._id === id ? { ...todo, complete: !todo.complete } : { ...todo};
     });
@@ -34,8 +35,8 @@ console.log([toDoList])
   }
 
   //filters a new array filled with tasks whose complete parameter say "false"
-  const handleFilter = () => {
-    axios.delete("http://localhost:3000/todo/delete/63f3a5b71ea71a4413ec174c")
+  const handleFilter = (id) => {
+    axios.delete(`http://localhost:3000/todo/delete/${id}`)
       .then(() => {
         let filtered = toDoList.filter(task => !task.complete);
         setToDoList(filtered);
