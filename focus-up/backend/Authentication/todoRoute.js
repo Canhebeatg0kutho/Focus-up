@@ -24,18 +24,27 @@ router.post('/', async (req, res) => {
     }
   })
   
+
   router.delete('/delete/:id', async(req,res)=>{
-    const id = req.params.id
-    await Todo.findOne({ complete:true})
-      .then(task => task)
-      .then(
-        res.status(201).json({ message: "Tasks successfully deleted", Todo })
-      )
-      .catch(error =>
-        res
-          .status(400)
-          .json({ message: "An error occurred", error: error.message })
-      )
+    try{
+      const tasks = await Todo.deleteMany({complete: true})
+      res.status(201).json({message: "Tasks successfuly deleted",tasks})
+    } catch(err){
+      res.status(400).json({message:err.message})
+    }
+  })
+
+  router.patch("/update/:id", async(req,res)=>{
+    const todo =  await Todo.findById(req.params.id)
+    try{
+      const todoUpdate = await Todo.findByIdAndUpdate(req.params.id, {
+        complete : !todo.complete,
+      })
+      res.status(201).json({ message: "task updated", todoUpdate })
+    } catch(err) {
+      res.status(400).json({message:err.message})
+
+    }
   })
   
   
