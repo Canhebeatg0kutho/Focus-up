@@ -14,11 +14,6 @@ const cors = require('cors');
 
 var path = require("path");
 
-
-
-
-
-
 const initializePassport= require('./backend/Passport/passport-config')
 const passport = require('passport')
 initializePassport(
@@ -53,6 +48,9 @@ app.use('/users', userRouter)
 
 const adminRouter = require('./backend/Authentication/adminRoute')
 app.use('/admin',adminRouter)
+
+const todoRouter = require('./backend/Authentication/todoRoute')
+app.use('/todo',todoRouter)
 
 app.use((req,res,next)=>{
   res.status(401).send('NOT_FOUND');
