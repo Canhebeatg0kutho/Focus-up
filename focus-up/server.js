@@ -14,11 +14,6 @@ const cors = require('cors');
 
 var path = require("path");
 
-
-
-
-
-
 const initializePassport= require('./backend/Passport/passport-config')
 const passport = require('passport')
 initializePassport(

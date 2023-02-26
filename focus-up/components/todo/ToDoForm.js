@@ -31,7 +31,7 @@ const ToDoForm = ({ addTask }) => {
     return (
         <form onSubmit={handleSubmit}>
             {/* When the the userInput state changes, it calls the handleChange function */}
-            <input className={classes.input} value={task} type="text" onChange={(e) => {setTask(e.target.value); setComplete(false)}} placeholder="Enter task..."/>
+            <input className={classes.input} value={task} type="text" onChange={(e) => {setTask(e.target.value); setComplete(isCompleted)}} placeholder="Enter task..."/>
             <button className={classes.submit}>Submit</button>
         </form>
     );
