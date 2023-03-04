@@ -1,0 +1,15 @@
+.text{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  
+  }
+
+  .text > textarea{
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    resize: none;
+    background-color: #21222A;
+    font-size: 20px;
+  }
