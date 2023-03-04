@@ -8,7 +8,7 @@ export default function Buttons(){
         <div className={classes.buttons}>
         <button><Link href = '/tasks'> Tasks </Link></button>
         <button><Link href = '/timer'> Timer </Link></button>
-        {/* <button><Link href = '/notes/rtos'>Notes</Link></button> */}
+        <button><Link href = '/notes'>Notes</Link></button>
     </div>
     )
 }
