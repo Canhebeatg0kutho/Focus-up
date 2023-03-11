@@ -10,8 +10,7 @@ export const getStaticPaths = async () =>{
      
     const paths = data.map(user=>{
         return {
-            params: {
-                notesId: String(user.username)}
+            params: {username: user.username.toString()}
         }
     })
 
@@ -22,9 +21,10 @@ export const getStaticPaths = async () =>{
 }
 
 export const getStaticProps = async (context) =>{
-const notesId = context.params.notesId
-const res = await fetch("http://localhost:3000/users/" + notesId)
+const username = context.params.username
+const res = await fetch("http://localhost:3000/users/" + username)
 const data = await res.json()
+console.log(data)
     return{
       props: {users: data}
     }
