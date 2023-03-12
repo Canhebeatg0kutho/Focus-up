@@ -6,7 +6,7 @@ const Notes = require("../schema/notes")
 router.get('/',async(req,res)=>{
     try{
          const allNotes = await Notes.find()
-         res.json([allNotes]) 
+         res.json(allNotes) 
     } catch(err){
         res.json({message:err.message})
     }

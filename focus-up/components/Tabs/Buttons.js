@@ -1,6 +1,6 @@
 import classes from "./buttons.module.css"
 import Link from 'next/link';
-import notesSpec from "../../pages/notes/[username]"
+import notesSpec from "../../pages/notes/[title]"
 
 
 export default function Buttons(){

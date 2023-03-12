@@ -7,12 +7,12 @@ import Text from "../../components/TextArea/text"
 
 
 export const getStaticPaths = async () =>{
-    const res = await fetch("http://localhost:3000/users")
+    const res = await fetch("http://localhost:3000/notes")
     const data = await res.json()
      
-    const paths = data.map(user=>{
+    const paths = data.map(note=>{
         return {
-            params: {username: user.username.toString()}
+            params: {title: note.title.toString()}
         }
     })
 
@@ -23,12 +23,12 @@ export const getStaticPaths = async () =>{
 }
 
 export const getStaticProps = async (context) =>{
-const username = context.params.username
-const res = await fetch("http://localhost:3000/users/" + username)
+const title = context.params.title
+const res = await fetch("http://localhost:3000/notes/" + title)
 const data = await res.json()
 console.log(data)
     return{
-      props: {users: data}
+      props: {title: data}
     }
   }
 
@@ -38,7 +38,7 @@ export default function NotesDetail({users}){
     return(
         <div>
         <Nav/>
-        <h1>{users.username}</h1>
+        {/* <h1>{users.username}</h1> */}
         {/* <h1>Notes for {notesId}</h1> */}
         <div className={classes.buttons}>
         <button><Link href = '/tasks'> Tasks </Link></button>
