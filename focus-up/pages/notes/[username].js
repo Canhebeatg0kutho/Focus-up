@@ -3,6 +3,8 @@ import Nav from "../../components/nav"
 import Buttons from "../../components/Tabs/Buttons"
 import classes from "../../components/Tabs/buttons.module.css"
 import Link from 'next/link';
+import Text from "../../components/TextArea/text"
+
 
 export const getStaticPaths = async () =>{
     const res = await fetch("http://localhost:3000/users")
@@ -43,6 +45,7 @@ export default function NotesDetail({users}){
         <button><Link href = '/timer'> Timer </Link></button>
         <button><Link href = '/notes'>Notes</Link></button>
         </div>
+        <Text/>
         </div>
     )
 }

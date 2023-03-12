@@ -17,7 +17,7 @@ export default function Notes({users}){
   <div>
     <Nav/>
     <Buttons/>
-    <Text/>
+
     {users.map(user=> (
       <Link href={'/notes/' + user.username} key={user.id}>
       <a>
