@@ -25,5 +25,25 @@ router.post('/create',async(req,res)=>{
    }
 })
 
+router.get('/:title', async(req,res)=>{
+    try{
+      const specificNote = await Notes.findOne({title:req.params.title})
+      res.json([specificNote])
+    }catch(err){
+      res.json({message: err.message})
+    }
+  })
+  
+
+  router.patch('/update',async(req,res)=>{
+     try{
+        const updated = await Notes.findOneAndUpdate({title:req.body.title},
+         {note:req.body.note}
+        ,{ new: true })
+        res.json([updated])
+     } catch(err){
+        res.json({message: err.message})
+     }
+  })
 
 module.exports = router; 

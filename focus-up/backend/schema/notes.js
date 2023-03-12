@@ -6,7 +6,6 @@ const notesSchema = new Mongoose.Schema({
     },
     note:{
         type:String,
-        default:false
     },
 })
 
