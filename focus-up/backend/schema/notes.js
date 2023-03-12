@@ -10,5 +10,5 @@ const notesSchema = new Mongoose.Schema({
     },
 })
 
-const ToDo = Mongoose.model("todo",ToDoSchema)
-module.exports = ToDo
+const Notes = Mongoose.model("notes",notesSchema)
+module.exports = Notes
