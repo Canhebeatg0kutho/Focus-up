@@ -28,22 +28,39 @@ const res = await fetch("http://localhost:3000/notes/" + title)
 const data = await res.json()
 console.log(data)
     return{
-      props: {title: data}
+      props: {notes: data}
     }
   }
 
-export default function NotesDetail({users}){
-    // const router =useRouter()
-    // const notesId=router.query.notesId
+//   const setNote = async() =>{
+//     const data = awaitfetch(
+//        "http://localhost:3000/notes/update",
+//        {
+//           method:'PATCH',
+//           headers:{
+//            'Content-Type': 'application/json',
+//           },
+//           body:JSON.stringify({
+           
+//           })
+//        }
+//     )
+// }
+
+export default function NotesDetail({notes}){
     return(
         <div>
         <Nav/>
-        {/* <h1>{users.username}</h1> */}
-        {/* <h1>Notes for {notesId}</h1> */}
         <div className={classes.buttons}>
         <button><Link href = '/tasks'> Tasks </Link></button>
         <button><Link href = '/timer'> Timer </Link></button>
-        <button><Link href = '/notes'>Notes</Link></button>
+        <button><Link href = '/notes'> Notes</Link></button>
+        {notes.map(note =>(
+            <h1 key={note.id}>{note.title} Notes</h1>
+        ))}
+        </div>
+        <div className={classes.text}>
+        <textarea rows = "50" cols = "80" placeholder="Enter details here..."> </textarea>
         </div>
         <Text/>
         </div>

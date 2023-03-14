@@ -13,7 +13,7 @@ export const getStaticProps = async () =>{
 }
 
 export default function Notes({notes}){
-    return(
+  return(
   <div>
     <Nav/>
     <Buttons/>

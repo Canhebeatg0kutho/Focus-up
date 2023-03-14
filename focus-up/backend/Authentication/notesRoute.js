@@ -35,9 +35,9 @@ router.get('/:title', async(req,res)=>{
   })
   
 
-  router.patch('/update',async(req,res)=>{
+  router.patch('/update/:title',async(req,res)=>{
      try{
-        const updated = await Notes.findOneAndUpdate({title:req.body.title},
+        const updated = await Notes.findOneAndUpdate({title:req.params.title},
          {note:req.body.note}
         ,{ new: true })
         res.json([updated])
