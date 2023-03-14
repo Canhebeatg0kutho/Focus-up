@@ -4,6 +4,7 @@ import Buttons from "../../components/Tabs/Buttons"
 import Link from 'next/link';
 import Text from "../../components/TextArea/text"
 import classes from "./notes.module.css"
+import { useState } from "react";
 
 
 
@@ -35,7 +36,27 @@ console.log(data)
 
 
 
+
+
 export default function NotesDetail({notes}){
+    const title = notes.title
+    const [noteText,setNote] = useState("")
+    const makeNote = async() =>{
+         await fetch(
+           `http://localhost:3000/notes/update/${title}`,
+           {
+              method:'PATCH',
+              headers:{
+               'Content-Type': 'application/json',
+              },
+              body:JSON.stringify({
+              note:noteText
+              })
+           }
+        )
+    }
+
+
     return(
         <div>
         <Nav/>
@@ -45,13 +66,14 @@ export default function NotesDetail({notes}){
         ))}
 
         <div className={classes.text}>
-        <textarea rows = "50" cols = "80" placeholder="Enter details here..."> 
+        <textarea rows = "50" cols = "80"  placeholder="Enter details here..." /*onChange={text => setNote(text)}*/> 
         {
             notes.map(note =>(
                 `${note.note}`
             ))
         }
         </textarea>
+        <button className={classes.save} onClick={makeNote()}>Save</button>
         </div>
         </div>
     )
