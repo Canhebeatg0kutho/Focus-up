@@ -38,7 +38,7 @@ console.log(data)
 
 
 
-export default function NotesDetail({notes}){
+  export default function NotesDetail({notes}){
     const title = notes.title
     const [noteText,setNote] = useState("")
     const makeNote = async() =>{
@@ -50,31 +50,29 @@ export default function NotesDetail({notes}){
                'Content-Type': 'application/json',
               },
               body:JSON.stringify({
-              note:noteText
+                note:noteText
               })
            }
         )
     }
-
-
     return(
         <div>
-        <Nav/>
-        <Buttons/>
-        {notes.map(note =>(
-            <h1 key={note.id}>{note.title} Notes</h1>
-        ))}
+            <Nav/>
+            <Buttons/>
+            {notes.map(note =>(
+                <h1 key={note.id}>{note.title} Notes</h1>
+            ))}
 
-        <div className={classes.text}>
-        <textarea rows = "50" cols = "80"  placeholder="Enter details here..." /*onChange={text => setNote(text)}*/> 
-        {
-            notes.map(note =>(
-                `${note.note}`
-            ))
-        }
-        </textarea>
-        <button className={classes.save} onClick={makeNote()}>Save</button>
-        </div>
+            <div className={classes.text}>
+                <textarea rows="50" cols="80" placeholder="Enter details here..." onChange={(event) => setNote(event.target.value)}> 
+                {
+                    notes.map(note =>(
+                        `${note.note}`
+                    ))
+                }
+                </textarea>
+                <button className={classes.save} onClick={async () => makeNote({note: noteText})}>Save</button>
+            </div>
         </div>
     )
 }
