@@ -15,7 +15,6 @@ router.get('/',async(req,res)=>{
 router.post('/create',async(req,res)=>{
    const note = new Notes({
     title:req.body.title,
-    note:req.body.note
    });
    try{
        const createNote = await note.save();
