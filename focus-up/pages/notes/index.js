@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Nav from "../../components/nav"
 import Buttons from "../../components/Tabs/Buttons"
-import Text from "../../components/TextArea/text"
+import classes from "./notes.module.css"
 
 export const getStaticProps = async () =>{
   const res = await fetch("http://localhost:3000/notes")
@@ -15,6 +15,8 @@ export const getStaticProps = async () =>{
 
 export default function Notes({notes}){
   const [titleText,setTitle] = useState('')
+  const [titleChange,setChanged] = useState('')
+  const [newTitle,setNew] = useState('')
   const addNote = async() =>{
     await fetch(
         `http://localhost:3000/notes/create`,
@@ -30,6 +32,22 @@ export default function Notes({notes}){
        }
     )
 }
+
+const changeTitle = async(titleChange) =>{
+  await fetch(
+     `http://localhost:3000/notes/update/title/${titleChange}`,
+    {
+       method:'PATCH',
+       Accept: "application/json",
+       headers:{
+        'Content-Type': 'application/json',
+       },
+       body:JSON.stringify({
+         title:newTitle,
+       })
+    }
+ )
+}
   return(
   <div>
     <Nav/>
@@ -37,14 +55,29 @@ export default function Notes({notes}){
     {notes.map(note=> (
       <Link href={'/notes/' + note.title} key={note.id}>
       <a>
-        <h3>{note.title}</h3>
+        <div>
+        <button className={classes.noteTitle}>{note.title}</button>
+        </div>
       </a>
       </Link>
     ))}
+    <h1>
+      CREATE NOTE
+    </h1>
     <div>
       <form>
-      <input type="text" placeholder='Enter a new note title' value ={titleText} onChange={(e)=> setTitle(e.target.value)}/>
-      <button onClick={async () => {addNote({title:titleText})}}>Save</button>
+      <input type="text" className={classes.input}placeholder='Enter a new note title' value ={titleText} onChange={(e)=> setTitle(e.target.value)}/>
+      <button className={classes.submit} onClick={async () => {addNote({title:titleText})}}>Add</button>
+      </form>
+    </div>
+    <h1>
+      UPDATE NOTE TITLE
+    </h1>
+    <div>
+      <form>
+      <input type="text"  className={classes.input} placeholder='Enter target title' value ={titleChange} onChange={(e)=> setChanged(e.target.value)}/>
+      <input type="text"  className={classes.input} placeholder='Enter new title name' value ={newTitle} onChange={(e)=> setNew(e.target.value)}/>
+      <button className={classes.submit} onClick={async () => {changeTitle(titleChange,{title:newTitle})}}>Change</button>
       </form>
     </div>
   </div>

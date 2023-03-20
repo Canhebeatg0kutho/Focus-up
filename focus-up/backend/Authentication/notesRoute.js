@@ -34,7 +34,7 @@ router.get('/:title', async(req,res)=>{
   })
   
 
-  router.patch('/update/:title',async(req,res)=>{
+  router.patch('/update/note/:title',async(req,res)=>{
      try{
         const updated = await Notes.findOneAndUpdate({title:req.params.title},
          {note:req.body.note}
@@ -44,5 +44,16 @@ router.get('/:title', async(req,res)=>{
         res.json({message: err.message})
      }
   })
+
+  router.patch('/update/title/:title',async(req,res)=>{
+   try{
+      const updated = await Notes.findOneAndUpdate({title:req.params.title},
+       {title:req.body.title}
+      ,{ new: true })
+      res.json([updated])
+   } catch(err){
+      res.json({message: err.message})
+   }
+})
 
 module.exports = router; 

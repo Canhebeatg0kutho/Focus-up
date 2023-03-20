@@ -45,7 +45,7 @@ console.log(data)
     const [noteText,setNote] = useState("")
     const makeNote = async() =>{
          await fetch(
-            `http://localhost:3000/notes/update/${title}`,
+            `http://localhost:3000/notes/update/note/${title}`,
            {
               method:'PATCH',
               Accept: "application/json",
