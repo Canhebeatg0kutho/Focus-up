@@ -61,7 +61,7 @@ const changeTitle = async(titleChange) =>{
       </a>
       </Link>
     ))}
-    <h1>
+    <h1 className={classes.title}>
       CREATE NOTE
     </h1>
     <div>
@@ -70,7 +70,7 @@ const changeTitle = async(titleChange) =>{
       <button className={classes.submit} onClick={async () => {addNote({title:titleText})}}>Add</button>
       </form>
     </div>
-    <h1>
+    <h1 className={classes.title}>
       UPDATE NOTE TITLE
     </h1>
     <div>

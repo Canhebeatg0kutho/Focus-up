@@ -1,3 +1,13 @@
+@keyframes slide {
+  0% {
+    transform: translateX(-600%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+
 .text{
     display: flex;
     flex-direction: row;
@@ -44,10 +54,10 @@
     background-color: rgb(47, 53, 53);
     height: 38px;
     font-size: 25px;
+    padding:5px;
     width: 15%;
     margin: 1px;
-    margin-left: auto;
-    margin-right: auto;
+    animation: 1s ease-out slide;
 }
 
 .submit{
@@ -58,7 +68,9 @@
   padding: 10px 24px;
   cursor: pointer;
   width: 5%;
-  margin-left: auto;
-  margin-right: auto;
+  animation: 1s ease-out slide;
+}
 
+.title{
+  animation: 1s ease-out slide;
 }
