@@ -39,21 +39,25 @@ console.log(data)
 
 
   export default function NotesDetail({notes}){
-    const title = notes.title
+    const title = notes.map(title =>(
+        title.title
+    ))
     const [noteText,setNote] = useState("")
     const makeNote = async() =>{
-         await fetch(
-           `http://localhost:3000/notes/update/${title}`,
+        const res = await fetch(
+            `http://localhost:3000/notes/update/${title}`,
            {
               method:'PATCH',
+              Accept: "application/json",
               headers:{
                'Content-Type': 'application/json',
               },
               body:JSON.stringify({
-                note:noteText
+                note:noteText,
               })
            }
         )
+        const data = await res.json();
     }
     return(
         <div>
@@ -71,7 +75,8 @@ console.log(data)
                     ))
                 }
                 </textarea>
-                <button className={classes.save} onClick={async () => makeNote({note: noteText})}>Save</button>
+                <button className={classes.save} onClick={async () => {makeNote({note:noteText})}}>Save</button>
+    
             </div>
         </div>
     )
