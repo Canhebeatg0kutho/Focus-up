@@ -18,6 +18,7 @@ export default function Notes({notes}){
   const [titleChange,setChanged] = useState('')
   const [newTitle,setNew] = useState('')
   const [deleteTitle,setDeleted] = useState('')
+  const [findTitle,setFound] = useState('')
   const addNote = async() =>{
     await fetch(
         `http://localhost:3000/notes/create`,
@@ -32,6 +33,22 @@ export default function Notes({notes}){
           })
        }
     )
+}
+
+const findNote = async() =>{
+  await fetch(
+      `http://localhost:3000/notes/find`,
+     {
+        method:'POST',
+        Accept: "application/json",
+        headers:{
+         'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+          title:titleText,
+        })
+     }
+  )
 }
 
 const deleteNote = async(deleteTitle) =>{
@@ -104,6 +121,16 @@ const changeTitle = async(titleChange) =>{
       <form>
       <input type="text" className={classes.input}placeholder='Enter a note to delete' value ={deleteTitle} onChange={(e)=> setDeleted(e.target.value)}/>
       <button className={classes.submit} onClick={async () => {deleteNote(deleteTitle)}}>Add</button>
+      </form>
+    </div>
+
+    <h1 className={classes.title}>
+      FIND NOTE
+    </h1>
+    <div>
+      <form>
+      <input type="text" className={classes.input}placeholder='Find a note' value ={findTitle} onChange={(e)=> setFound(e.target.value)}/>
+      <button className={classes.submit} onClick={async () => {findNote({title:titleText})}}>Add</button>
       </form>
     </div>
   </div>

@@ -24,6 +24,18 @@ router.post('/create',async(req,res)=>{
    }
 })
 
+router.post('/find', async(req, res, next) => {
+   const findNote = new Notes({
+      title:req.body.title,
+   })
+   try{
+    const newNote = await Notes.find({title:findNote.title})
+    res.json(newNote)
+   } catch(err){
+     res.status(400).json({message:err.message})
+   }
+ })
+
 router.get('/:title', async(req,res)=>{
     try{
       const specificNote = await Notes.findOne({title:req.params.title})
