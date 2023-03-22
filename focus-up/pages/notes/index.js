@@ -17,6 +17,7 @@ export default function Notes({notes}){
   const [titleText,setTitle] = useState('')
   const [titleChange,setChanged] = useState('')
   const [newTitle,setNew] = useState('')
+  const [deleteTitle,setDeleted] = useState('')
   const addNote = async() =>{
     await fetch(
         `http://localhost:3000/notes/create`,
@@ -31,6 +32,22 @@ export default function Notes({notes}){
           })
        }
     )
+}
+
+const deleteNote = async(deleteTitle) =>{
+  await fetch(
+      `http://localhost:3000/notes/delete/title/${deleteTitle}`,
+     {
+        method:'DELETE',
+        Accept: "application/json",
+        headers:{
+         'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({
+          title:titleText,
+        })
+     }
+  )
 }
 
 const changeTitle = async(titleChange) =>{
@@ -78,6 +95,15 @@ const changeTitle = async(titleChange) =>{
       <input type="text"  className={classes.input} placeholder='Enter target title' value ={titleChange} onChange={(e)=> setChanged(e.target.value)}/>
       <input type="text"  className={classes.input} placeholder='Enter new title name' value ={newTitle} onChange={(e)=> setNew(e.target.value)}/>
       <button className={classes.submit} onClick={async () => {changeTitle(titleChange,{title:newTitle})}}>Change</button>
+      </form>
+    </div>
+    <h1 className={classes.title}>
+      DELETE NOTE
+    </h1>
+    <div>
+      <form>
+      <input type="text" className={classes.input}placeholder='Enter a note to delete' value ={deleteTitle} onChange={(e)=> setDeleted(e.target.value)}/>
+      <button className={classes.submit} onClick={async () => {deleteNote(deleteTitle)}}>Add</button>
       </form>
     </div>
   </div>

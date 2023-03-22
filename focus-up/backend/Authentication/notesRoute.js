@@ -56,4 +56,13 @@ router.get('/:title', async(req,res)=>{
    }
 })
 
+router.delete('/delete/title/:title',async(req,res)=>{
+   try{
+      const deleted = await Notes.findOneAndDelete({title:req.params.title})
+      res.json({message:"note successfully deleted",deleted})
+   }catch(err){
+      res.json({message: err.message})
+   }
+})
+
 module.exports = router; 
