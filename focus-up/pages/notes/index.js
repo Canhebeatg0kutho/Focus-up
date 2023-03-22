@@ -120,7 +120,7 @@ const changeTitle = async(titleChange) =>{
     <div>
       <form>
       <input type="text" className={classes.input}placeholder='Enter a note to delete' value ={deleteTitle} onChange={(e)=> setDeleted(e.target.value)}/>
-      <button className={classes.submit} onClick={async () => {deleteNote(deleteTitle)}}>Add</button>
+      <button className={classes.submit} onClick={async () => {deleteNote(deleteTitle)}}>Delete</button>
       </form>
     </div>
 
@@ -130,9 +130,10 @@ const changeTitle = async(titleChange) =>{
     <div>
       <form>
       <input type="text" className={classes.input}placeholder='Find a note' value ={findTitle} onChange={(e)=> setFound(e.target.value)}/>
-      <button className={classes.submit} onClick={async () => {findNote({title:titleText})}}>Add</button>
+      <button className={classes.submit} onClick={async () => {findNote({title:findTitle})}}>Find</button>
       </form>
     </div>
+
   </div>
     )
 }
