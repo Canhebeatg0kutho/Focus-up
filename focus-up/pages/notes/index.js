@@ -1,139 +1,206 @@
-import Link from 'next/link';
-import { useState } from 'react';
-import Nav from "../../components/nav"
-import Buttons from "../../components/Tabs/Buttons"
-import classes from "./notes.module.css"
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import Nav from "../../components/nav";
+import Buttons from "../../components/Tabs/Buttons";
+import classes from "./notes.module.css";
 
-export const getStaticProps = async () =>{
-  const res = await fetch("http://localhost:3000/notes")
-  const data = await res.json()
+export const getStaticProps = async () => {
+  const res = await fetch("http://localhost:3000/notes");
+  const data = await res.json();
 
-  return{
-    props: {notes: data}
-  }
+  return {
+    props: { notes: data },
+  };
 }
 
-export default function Notes({notes}){
-  const [titleText,setTitle] = useState('')
-  const [titleChange,setChanged] = useState('')
-  const [newTitle,setNew] = useState('')
-  const [deleteTitle,setDeleted] = useState('')
-  const [findTitle,setFound] = useState('')
-  const addNote = async() =>{
-    await fetch(
-        `http://localhost:3000/notes/create`,
-       {
-          method:'POST',
+export default function Notes({ notes }) {
+  const [titleText, setTitle] = useState("");
+  const [titleChange, setChanged] = useState("");
+  const [newTitle, setNew] = useState("");
+  const [deleteTitle, setDeleted] = useState("");
+
+  const addNote = async () => {
+    await fetch(`http://localhost:3000/notes/create`, {
+      method: "POST",
+      Accept: "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: titleText,
+      }),
+    });
+  };
+
+  const findNote = useEffect(()=>{
+    async () => {
+      try {
+        const res = await fetch(`http://localhost:3000/notes/find`, {
+          method: "POST",
           Accept: "application/json",
-          headers:{
-           'Content-Type': 'application/json',
+          headers: {
+            "Content-Type": "application/json",
           },
-          body:JSON.stringify({
-            title:titleText,
-          })
-       }
-    )
-}
+          body: JSON.stringify({
+            title: findTitle,
+          }),
+        });
+        const data = await res.json();
+        setFind(data);
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  },[findTitle])
 
-const findNote = async() =>{
-  await fetch(
-      `http://localhost:3000/notes/find`,
-     {
-        method:'POST',
-        Accept: "application/json",
-        headers:{
-         'Content-Type': 'application/json',
-        },
-        body:JSON.stringify({
-          title:titleText,
-        })
-     }
-  )
-}
+ 
 
-const deleteNote = async(deleteTitle) =>{
-  await fetch(
-      `http://localhost:3000/notes/delete/title/${deleteTitle}`,
-     {
-        method:'DELETE',
-        Accept: "application/json",
-        headers:{
-         'Content-Type': 'application/json',
-        },
-        body:JSON.stringify({
-          title:titleText,
-        })
-     }
-  )
-}
+  const deleteNote = async (deleteTitle) => {
+    await fetch(`http://localhost:3000/notes/delete/title/${deleteTitle}`, {
+      method: "DELETE",
+      Accept: "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: titleText,
+      }),
+    });
+  };
 
-const changeTitle = async(titleChange) =>{
-  await fetch(
-     `http://localhost:3000/notes/update/title/${titleChange}`,
-    {
-       method:'PATCH',
-       Accept: "application/json",
-       headers:{
-        'Content-Type': 'application/json',
-       },
-       body:JSON.stringify({
-         title:newTitle,
-       })
-    }
- )
-}
-  return(
-  <div>
-    <Nav/>
-    <Buttons/>
-    {notes.map(note=> (
-      <Link href={'/notes/' + note.title} key={note.id}>
-      <a>
-        <div>
-        <button className={classes.noteTitle}>{note.title}</button>
-        </div>
-      </a>
-      </Link>
-    ))}
-    <h1 className={classes.title}>
-      CREATE NOTE
-    </h1>
+  const changeTitle = async (titleChange) => {
+    await fetch(`http://localhost:3000/notes/update/title/${titleChange}`, {
+      method: "PATCH",
+      Accept: "application/json",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        title: newTitle,
+      }),
+    });
+  };
+  return (
     <div>
-      <form>
-      <input type="text" className={classes.input}placeholder='Enter a new note title' value ={titleText} onChange={(e)=> setTitle(e.target.value)}/>
-      <button className={classes.submit} onClick={async () => {addNote({title:titleText})}}>Add</button>
-      </form>
-    </div>
-    <h1 className={classes.title}>
-      UPDATE NOTE TITLE
-    </h1>
-    <div>
-      <form>
-      <input type="text"  className={classes.input} placeholder='Enter target title' value ={titleChange} onChange={(e)=> setChanged(e.target.value)}/>
-      <input type="text"  className={classes.input} placeholder='Enter new title name' value ={newTitle} onChange={(e)=> setNew(e.target.value)}/>
-      <button className={classes.submit} onClick={async () => {changeTitle(titleChange,{title:newTitle})}}>Change</button>
-      </form>
-    </div>
-    <h1 className={classes.title}>
-      DELETE NOTE
-    </h1>
-    <div>
-      <form>
-      <input type="text" className={classes.input}placeholder='Enter a note to delete' value ={deleteTitle} onChange={(e)=> setDeleted(e.target.value)}/>
-      <button className={classes.submit} onClick={async () => {deleteNote(deleteTitle)}}>Delete</button>
-      </form>
-    </div>
+      <Nav />
+      <Buttons />
+      {notes.map((note) => (
+        <Link href={"/notes/" + note.title} key={note.id}>
+          <a>
+            <div>
+              <button className={classes.noteTitle}>{note.title}</button>
+            </div>
+          </a>
+        </Link>
+      ))}
 
-    <h1 className={classes.title}>
-      FIND NOTE
-    </h1>
-    <div>
-      <form>
-      <input type="text" className={classes.input}placeholder='Find a note' value ={findTitle} onChange={(e)=> setFound(e.target.value)}/>
-      <button className={classes.submit} onClick={async () => {findNote({title:findTitle})}}>Find</button>
-      </form>
-    </div>
 
-  </div>
-    )
+         {/* FIND NOTE */}
+      <h1 className={classes.title}>FIND NOTE</h1>
+      <div>
+        <form>
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Find a note"
+            value={findTitle}
+            onChange={(e) => setFound(e.target.value)}
+          />
+          <button
+            className={classes.submit}
+            onClick={async () => {
+              findNote({ title: findTitle });
+            }}
+          >
+            Find
+          </button>
+        </form>
+      </div>
+
+      {foundTitles.map((found) => (
+        <Link href={"/notes/" + found.title} key={found.id}>
+          <a>
+            <div>
+              <button className={classes.noteTitle}>{found.title}</button>
+            </div>
+          </a>
+        </Link>
+      ))}
+
+            {/* CREATE NOTE */}
+      <h1 className={classes.title}>CREATE NOTE</h1>
+      <div>
+        <form>
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Enter a new note title"
+            value={titleText}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <button
+            className={classes.submit}
+            onClick={async () => {
+              addNote();
+            }}
+          >
+            Add
+          </button>
+        </form>
+      </div>
+
+
+       {/* UPDATE NOTE */}
+      <h1 className={classes.title}>UPDATE NOTE TITLE</h1>
+      <div>
+        <form>
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Enter target title"
+            value={titleChange}
+            onChange={(e) => setChanged(e.target.value)}
+          />
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Enter new title name"
+            value={newTitle}
+            onChange={(e) => setNew(e.target.value)}
+          />
+          <button
+            className={classes.submit}
+            onClick={async () => {
+              changeTitle(titleChange, { title: newTitle });
+            }}
+          >
+            Change
+          </button>
+        </form>
+      </div>
+
+      {/* DELETE NOTE */}
+      <h1 className={classes.title}>DELETE NOTE</h1>
+      <div>
+        <form>
+          <input
+            type="text"
+            className={classes.input}
+            placeholder="Enter a note to delete"
+            value={deleteTitle}
+            onChange={(e) => setDeleted(e.target.value)}
+          />
+          <button
+            className={classes.submit}
+            onClick={async () => {
+              deleteNote(deleteTitle);
+            }}
+          >
+            Delete
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 }
