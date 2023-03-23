@@ -2,39 +2,54 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Nav from "../../components/nav";
 import Buttons from "../../components/Tabs/Buttons";
-import classes from "./notes.module.css";
+import classes from "../notes/notes.module.css";
 
+export default function search() {
+  const [titles, setTitle] = useState([]);
+  const [found, setFound] = useState('');
 
+  const search = async () => {
+    try {
+      const res = await fetch(`http://localhost:3000/notes/find`, {
+        method: "POST",
+        Accept: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: found,
+        }),
+      });
+      const data = await res.json();
+      console.log(data)
+      setTitle(data);
+      console.log(titles);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
+  useEffect(() => {
+    console.log(titles);
+  }, [titles]);
 
-export default function search(){
-    const [findTitle, setFound] = useState("");
-    const [foundTitles, setFind] = useState([]);
+  useEffect(() => {
+    console.log("titles updated:", titles);
+  }, [titles]);
+  
+  return (
+    <div>
+      {titles.map((title) => (
+        <Link href={"/notes/" + title.title} key={title._id}>
+          <a>
+            <div>
+              <button className={classes.noteTitle}>{title.title}</button>
+            </div>
+          </a>
+        </Link>
+      ))}
 
-   const search =  async () => {
-        try {
-          const res = await fetch(`http://localhost:3000/notes/find`, {
-            method: "POST",
-            Accept: "application/json",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              title: findTitle,
-            }),
-          });
-          const data = await res.json();
-          setFind(data);
-          console.log(data);
-        } catch (err) {
-          console.log(err);
-        }
-      };
-
-
-    return(
-     <div>
-     {/* FIND NOTE */}
+      {/* FIND NOTE */}
       <h1 className={classes.title}>FIND NOTE</h1>
       <div>
         <form>
@@ -42,34 +57,19 @@ export default function search(){
             type="text"
             className={classes.input}
             placeholder="Find a note"
-            value={findTitle}
+            value={found}
             onChange={(e) => setFound(e.target.value)}
           />
           <button
             className={classes.submit}
             onClick={async () => {
-              findNote({ title: findTitle });
+              search();
             }}
           >
             Find
           </button>
         </form>
       </div>
-
-
-      {foundTitles.map((found) => (
-            <Link href={"/notes/" + found.title} key={found.id}>
-              <a>
-                <div>
-                  <button className={classes.noteTitle}>{found.title}</button>
-                </div>
-              </a>
-            </Link>
-          ))}
-    
-     </div>
-      
-
-
-    )
+    </div>
+  );
 }

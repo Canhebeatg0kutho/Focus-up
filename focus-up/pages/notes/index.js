@@ -19,18 +19,21 @@ export default function Notes({ notes }) {
   const [newTitle, setNew] = useState("");
   const [deleteTitle, setDeleted] = useState("");
 
-  const addNote = async () => {
-    await fetch(`http://localhost:3000/notes/create`, {
-      method: "POST",
-      Accept: "application/json",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: titleText,
-      }),
-    });
-  };
+  const addNote = useEffect(()=>{
+    async () => {
+      await fetch(`http://localhost:3000/notes/create`, {
+        method: "POST",
+        Accept: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: titleText,
+        }),
+      });
+    };
+  },[])
+  
 
 
   const deleteNote = async (deleteTitle) => {
@@ -62,6 +65,7 @@ export default function Notes({ notes }) {
     <div>
       <Nav />
       <Buttons />
+      <button><Link href = '/noteSearch'>Notes</Link></button>
       {notes.map((note) => (
         <Link href={"/notes/" + note.title} key={note.id}>
           <a>
