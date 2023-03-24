@@ -25,13 +25,14 @@ router.post('/create',async(req,res)=>{
 })
 
 router.post('/find', async(req, res, next) => {
-   const findNote = new Notes({
-      title:req.body.title,
-   })
+   // const findNote = new Notes({
+   //    title:req.body.title,
+   // })
    try{
-    const newNote = await Notes.find({title:findNote.title})
-    console.log("Found note:", newNote);
-    res.json(newNote)
+    const newNote = await Notes.findOne({title:req.body.title})
+    console.log(req.body)
+    console.log(newNote);
+    res.json([newNote])
    } catch(err){
      res.status(400).json({message:err.message})
    }

@@ -6,37 +6,33 @@ import classes from "../notes/notes.module.css";
 
 export default function search() {
   const [titles, setTitle] = useState([]);
-  const [found, setFound] = useState('');
+  const [text, setText] = useState('');
 
   const search = async () => {
+    console.log(text);
     try {
       const res = await fetch(`http://localhost:3000/notes/find`, {
         method: "POST",
-        Accept: "application/json",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          title: found,
+          title: text,
         }),
       });
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       setTitle(data);
-      console.log(titles);
     } catch (err) {
       console.log(err);
     }
   };
 
-  useEffect(() => {
-    console.log(titles);
-  }, [titles]);
 
-  useEffect(() => {
-    console.log("titles updated:", titles);
-  }, [titles]);
-  
+  useEffect(()=>{
+    console.log(titles)
+  },[titles])
+
   return (
     <div>
       {titles.map((title) => (
@@ -57,8 +53,8 @@ export default function search() {
             type="text"
             className={classes.input}
             placeholder="Find a note"
-            value={found}
-            onChange={(e) => setFound(e.target.value)}
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
           <button
             className={classes.submit}
