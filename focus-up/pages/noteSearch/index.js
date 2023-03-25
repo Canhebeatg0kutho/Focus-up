@@ -9,6 +9,7 @@ export default function search() {
   const [text, setText] = useState('');
 
   const search = async () => {
+  
     console.log(text);
     try {
       const res = await fetch(`http://localhost:3000/notes/find`, {
@@ -35,11 +36,13 @@ export default function search() {
 
   return (
     <div>
+     
       {titles.map((title) => (
         <Link href={"/notes/" + title.title} key={title._id}>
           <a>
             <div>
-              <button className={classes.noteTitle}>{title.title}</button>
+            <p>Results:</p>
+              <button>{title.title}</button>
             </div>
           </a>
         </Link>
@@ -48,7 +51,7 @@ export default function search() {
       {/* FIND NOTE */}
       <h1 className={classes.title}>FIND NOTE</h1>
       <div>
-        <form>
+        <div>
           <input
             type="text"
             className={classes.input}
@@ -64,7 +67,7 @@ export default function search() {
           >
             Find
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
