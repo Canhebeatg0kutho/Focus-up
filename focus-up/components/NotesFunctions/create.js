@@ -7,7 +7,7 @@ import classes from "../../pages/notes/notes.module.css";
 
 export default function Create(){
     const [titleText, setTitle] = useState("");
-    const addNote = useEffect(()=>{
+    const addNote =
         async () => {
           await fetch(`http://localhost:3000/notes/create`, {
             method: "POST",
@@ -20,7 +20,7 @@ export default function Create(){
             }),
           });
         };
-      },[])
+
 
 
     return(

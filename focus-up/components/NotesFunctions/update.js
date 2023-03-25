@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import classes from "../../pages/notes/notes.module.css";
 
+
 export default function Update(){
     const [titleChange, setChanged] = useState("");
     const [newTitle, setNew] = useState("");

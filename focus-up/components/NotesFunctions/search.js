@@ -42,7 +42,7 @@ export default function search() {
           <a>
             <div>
             <p>Results:</p>
-              <button>{title.title}</button>
+              <button className={classes.noteTitle}>{title.title}</button>
             </div>
           </a>
         </Link>
