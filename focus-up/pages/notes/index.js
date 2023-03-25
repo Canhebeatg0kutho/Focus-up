@@ -5,6 +5,7 @@ import Buttons from "../../components/Tabs/Buttons";
 import classes from "./notes.module.css";
 import Search from "../../components/NotesFunctions/search";
 import Delete from "../../components/NotesFunctions/delete";
+import Create from "../../components/NotesFunctions/create";
 
 export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3000/notes");
@@ -16,25 +17,12 @@ export const getStaticProps = async () => {
 }
 
 export default function Notes({ notes }) {
-  const [titleText, setTitle] = useState("");
+
   const [titleChange, setChanged] = useState("");
   const [newTitle, setNew] = useState("");
 
 
-  const addNote = useEffect(()=>{
-    async () => {
-      await fetch(`http://localhost:3000/notes/create`, {
-        method: "POST",
-        Accept: "application/json",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: titleText,
-        }),
-      });
-    };
-  },[])
+
   
 
 
@@ -57,6 +45,7 @@ export default function Notes({ notes }) {
       <Buttons />
       <Search/>
       <Delete/>
+      <Create/>
       <button><Link href = '/noteSearch'>Notes</Link></button>
       {notes.map((note) => (
         <Link href={"/notes/" + note.title} key={note.id}>
@@ -68,27 +57,7 @@ export default function Notes({ notes }) {
         </Link>
       ))}
       
-      {/* CREATE NOTE */}
-      <h1 className={classes.title}>CREATE NOTE</h1>
-      <div>
-        <form>
-          <input
-            type="text"
-            className={classes.input}
-            placeholder="Enter a new note title"
-            value={titleText}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <button
-            className={classes.submit}
-            onClick={async () => {
-              addNote();
-            }}
-          >
-            Add
-          </button>
-        </form>
-      </div>
+
 
 
        {/* UPDATE NOTE */}
