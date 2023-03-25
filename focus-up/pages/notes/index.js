@@ -4,6 +4,7 @@ import Nav from "../../components/nav";
 import Buttons from "../../components/Tabs/Buttons";
 import classes from "./notes.module.css";
 import Search from "../../components/NotesFunctions/search";
+import Delete from "../../components/NotesFunctions/delete";
 
 export const getStaticProps = async () => {
   const res = await fetch("http://localhost:3000/notes");
@@ -18,7 +19,7 @@ export default function Notes({ notes }) {
   const [titleText, setTitle] = useState("");
   const [titleChange, setChanged] = useState("");
   const [newTitle, setNew] = useState("");
-  const [deleteTitle, setDeleted] = useState("");
+
 
   const addNote = useEffect(()=>{
     async () => {
@@ -37,19 +38,7 @@ export default function Notes({ notes }) {
   
 
 
-  const deleteNote = async (deleteTitle) => {
-    await fetch(`http://localhost:3000/notes/delete/title/${deleteTitle}`, {
-      method: "DELETE",
-      Accept: "application/json",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: titleText,
-      }),
-    });
-  };
-
+  
   const changeTitle = async (titleChange) => {
     await fetch(`http://localhost:3000/notes/update/title/${titleChange}`, {
       method: "PATCH",
@@ -67,6 +56,7 @@ export default function Notes({ notes }) {
       <Nav />
       <Buttons />
       <Search/>
+      <Delete/>
       <button><Link href = '/noteSearch'>Notes</Link></button>
       {notes.map((note) => (
         <Link href={"/notes/" + note.title} key={note.id}>
@@ -130,27 +120,7 @@ export default function Notes({ notes }) {
         </form>
       </div>
 
-      {/* DELETE NOTE */}
-      <h1 className={classes.title}>DELETE NOTE</h1>
-      <div>
-        <form>
-          <input
-            type="text"
-            className={classes.input}
-            placeholder="Enter a note to delete"
-            value={deleteTitle}
-            onChange={(e) => setDeleted(e.target.value)}
-          />
-          <button
-            className={classes.submit}
-            onClick={async () => {
-              deleteNote(deleteTitle);
-            }}
-          >
-            Delete
-          </button>
-        </form>
-      </div>
+     
     </div>
   );
 }
