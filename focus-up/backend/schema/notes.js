@@ -3,6 +3,7 @@ const notesSchema = new Mongoose.Schema({
     title: {
         type:String,
         required:true,
+        unique:true,
     },
     note:{
         type:String,
