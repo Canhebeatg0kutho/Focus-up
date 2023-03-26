@@ -17,12 +17,11 @@ const ToDoForm = ({ addTask }) => {
             url:"http://localhost:3000/todo",
             data:{
                 task,
-                isCompleted: false,
             }
         }
         axios(configuration)
         .then((result) => {
-        addTask(task,isCompleted);
+        addTask(task);
         setTask(" ");
     })
         .catch((error) => {error = new Error();})
@@ -31,7 +30,7 @@ const ToDoForm = ({ addTask }) => {
     return (
         <form onSubmit={handleSubmit}>
             {/* When the the userInput state changes, it calls the handleChange function */}
-            <input className={classes.input} value={task} type="text" onChange={(e) => {setTask(e.target.value); setComplete(isCompleted)}} placeholder="Enter task..."/>
+            <input className={classes.input} value={task} type="text" onChange={(e) => {setTask(e.target.value)}} placeholder="Enter task..."/>
             <button className={classes.submit}>Submit</button>
         </form>
     );

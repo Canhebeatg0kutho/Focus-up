@@ -1,0 +1,89 @@
+@keyframes slide {
+  0% {
+    transform: translateX(-600%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+
+.text{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  
+  }
+
+  .text > textarea{
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    resize: none;
+    background-color: #21222A;
+    font-size: 20px;
+  }
+
+  .save{
+    background-color: #1eff00;
+    border: 3px solid #000000; 
+    border-radius: 10px;
+    color: rgb(0, 0, 0); 
+    padding: 10px 24px;
+    cursor: pointer;
+  }
+
+  .noteTitle{
+    background-color: #ff00c8;
+    border: 3px solid #000000; 
+    border-radius: 10px;
+    color: rgb(0, 0, 0); 
+    padding: 10px 24px;
+    cursor: pointer;
+    display: block; 
+    margin: 10px;
+    margin-top: 20px;
+    font-size:30px;
+    animation: 1s ease-out slide;
+    min-width: 0%;
+  }
+
+  .submit{
+    display: flex;
+    flex-direction: column;
+    background-color: #1eff00;
+    border: 3px solid #000000; 
+    border-radius: 10px;
+    color: rgb(0, 0, 0); 
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 5%;
+    min-width: 0%;
+    animation: 1s ease-out slide;
+  }
+
+  .input {
+	
+
+    position:relative;
+    
+
+    font-size: 1.5em;
+    
+
+    background: linear-gradient(21deg, #10abff, #1beabd);
+    
+
+    padding: 3px;
+    
+
+    display: inline-block;
+    
+
+    border-radius: 9999em;
+  }
+
+
+.title{
+  animation: 1s ease-out slide;
+}

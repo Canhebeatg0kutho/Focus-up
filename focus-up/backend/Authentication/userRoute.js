@@ -74,6 +74,15 @@ router.delete('/:id', async(req,res)=>{
     )
 })
 
+router.get('/:username', async(req,res)=>{
+  try{
+    const specificUser = await User.findOne({username:req.params.username})
+    res.json([specificUser])
+  }catch(err){
+    res.json({message: err.message})
+  }
+})
+
 router.post('/login', checkNotAuthenticated, passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
