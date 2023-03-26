@@ -23,8 +23,6 @@ export default function Notes({ notes }) {
       <Nav />
       <Buttons />
       <Search/>
-
-      <button><Link href = '/noteSearch'>Notes</Link></button>
       {notes.map((note) => (
         <Link href={"/notes/" + note.title} key={note.id}>
           <a>
