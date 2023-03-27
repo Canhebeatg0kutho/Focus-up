@@ -11,6 +11,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const User = require("./backend/schema/User");
 const cors = require('cors');
+const MongoStore = require('connect-mongo')(session);
 
 var path = require("path");
 
