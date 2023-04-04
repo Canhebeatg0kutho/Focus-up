@@ -9,6 +9,21 @@ export default function Pomodoro(){
     const[displayMessage,setDisplayMessage]= useState(false);
     const[isPaused,setPause] = useState(true);
 
+
+    const Timer = async () => {
+        await fetch(`http://localhost:3000/timer/edit}`, {
+          method: "PATCH",
+          Accept: "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+             seconds: seconds,
+             minutes: minutes
+          }),
+        });
+      };
+
     let interval= null;
     //Anytime seconds is updated/ if the play button is pressed, run this code
     useEffect(() => {   
