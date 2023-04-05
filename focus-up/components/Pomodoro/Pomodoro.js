@@ -1,13 +1,14 @@
 import classes from "./pomo.module.css"
 import PlayButton from "./PlayButton";
 import PauseButton from "./PauseButton";
+import SettingsButton from "./SettingsButtton";
 import { useState, useEffect, useRef } from "react"
 export default function Pomodoro(){
     const[minutes,setMinutes] = useState(0);
     const[seconds,setSeconds] = useState(5);
     const[displayMessage,setDisplayMessage]= useState(false);
     const[isPaused,setPause] = useState(true);
-    
+
     useEffect(() => {
       const fetchTimer = async () => {
         const response = await fetch("http://localhost:3000/timer");
@@ -62,10 +63,11 @@ export default function Pomodoro(){
              {displayMessage ? "Break time! New Session starts in:" : ""}
            </div>
         <div className={classes.timer}>{timerMinutes}:{timerSeconds}</div>
-        <div> 
+        <div className={classes.buttonsContainer}> 
             {isPaused 
             ? <PlayButton onClick={()=>{setPause(false); }}/> 
             : <PauseButton onClick={()=>{setPause(true); }}/>}
+            <SettingsButton/>
         </div>   
         </div>
     )

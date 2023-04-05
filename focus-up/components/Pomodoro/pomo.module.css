@@ -13,6 +13,7 @@
     color: rgb(68, 255, 130);
     border: 0;
     display: inline-block;
+    cursor: pointer;
     width: 100px;
 }
 
@@ -21,9 +22,24 @@
     color: rgb(255, 0, 0);
     border: 0;
     display: inline-block;
+    cursor: pointer;
     width: 100px;
 }
 
 .timer{
     color:rgb(68, 255, 239);
+}
+
+.buttonsContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.SettingsButton{
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
 }
