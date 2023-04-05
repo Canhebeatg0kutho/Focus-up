@@ -1,9 +1,18 @@
 import classes from "./pomo.module.css";
+import { useState } from "react";
+import Popup from "./Popup";
+import Settings from "./Settings";
+
 
 export default function SettingsButton(props) {
+ const [isOpen,setOpen] = useState(false)
+ const togglePopup = () =>{
+    setOpen(!isOpen);
+}
   return (
     <div>
-      <button className={classes.SettingsButton} {...props}>
+        {isOpen && <Popup handleClose={togglePopup} content={<Settings/>} />}
+      <button className={classes.SettingsButton} onClick={togglePopup} {...props}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
