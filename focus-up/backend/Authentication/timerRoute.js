@@ -4,8 +4,9 @@ const Timer = require("../schema/timer");
 
 router.get("/", async (req, res) => {
   try {
-    const allTimes = await Timer.find();
+    const allTimes = await Timer.findOne();
     res.json(allTimes);
+    console.log(allTimes)
   } catch (err) {
     res.json({ message: err.message });
   }
@@ -22,5 +23,19 @@ router.patch("/edit", async (req, res) => {
     res.json({ message: err.message });
   }
 });
+
+router.post("/create",async(req,res)=>{
+  const create = new Timer({
+    minutes:req.body.minutes,
+    seconds:req.body.seconds
+  })
+  try{
+    const newTimer = await create.save()
+    res.json(newTimer)
+  }catch(err){
+
+  }
+})
+
 
 module.exports = router;

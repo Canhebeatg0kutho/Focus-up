@@ -3,27 +3,21 @@ import PlayButton from "./PlayButton";
 import PauseButton from "./PauseButton";
 import { useState, useEffect, useRef } from "react"
 export default function Pomodoro(){
- 
     const[minutes,setMinutes] = useState(0);
     const[seconds,setSeconds] = useState(5);
     const[displayMessage,setDisplayMessage]= useState(false);
     const[isPaused,setPause] = useState(true);
-
-
-    const Timer = async () => {
-        await fetch(`http://localhost:3000/timer/edit}`, {
-          method: "PATCH",
-          Accept: "application/json",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-             seconds: seconds,
-             minutes: minutes
-          }),
-        });
+    
+    useEffect(() => {
+      const fetchTimer = async () => {
+        const response = await fetch("http://localhost:3000/timer");
+        const data = await response.json();
+        setMinutes(data.minutes); // Set minutes from the response
+        setSeconds(data.seconds); // Set seconds from the response
       };
-
+      fetchTimer();
+    }, []); 
+  
     let interval= null;
     //Anytime seconds is updated/ if the play button is pressed, run this code
     useEffect(() => {   
@@ -41,7 +35,6 @@ export default function Pomodoro(){
                   let min = displayMessage ? 24 : 4
                   let sec = 59;
                   setPause(true);
-
                   setSeconds(sec);
                   setMinutes(min);
                   //Opposite of current displayMessage
@@ -50,7 +43,6 @@ export default function Pomodoro(){
             } else{
                 setSeconds(seconds - 1);
             }
-        
         }, 1000)
     }
     else{
