@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const Timer = require("../schema/timer");
 
-router.get("/", async (req, res) => {
+router.get("/:title", async (req, res) => {
   try {
-    const allTimes = await Timer.findOne({title:"Work"});
+    const allTimes = await Timer.findOne({title:req.params.title});
     res.json(allTimes);
     console.log(allTimes)
   } catch (err) {
