@@ -1,29 +1,104 @@
-.pomodoro{
+.pomodoro {
     font-size: 6em;
 }
 
-.message{
+.message {
     font-size: 0.5em;
     min-height: 1.3em;
-    margin-bottom:0.5em ;
+    margin-bottom: 0.5em;
 }
 
-.playButton{
+.playButton {
     background-color: transparent;
     color: rgb(68, 255, 130);
     border: 0;
     display: inline-block;
+    cursor: pointer;
     width: 100px;
 }
 
-.pauseButton{
+.pauseButton {
     background-color: transparent;
     color: rgb(255, 0, 0);
     border: 0;
     display: inline-block;
+    cursor: pointer;
     width: 100px;
 }
 
-.timer{
-    color:rgb(68, 255, 239);
+.timer {
+    color: rgb(68, 255, 239);
 }
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.SettingsButton {
+    background-color: transparent;
+    color: rgb(255, 255, 255);
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+    width: 100px;
+}
+
+
+.popupbox {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 10vh;
+}
+
+.box {
+    position: relative;
+    width: 30%;
+    min-height: 50px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #000000;
+    border-width: 6px;
+    border-color: black;
+    border-radius: px;
+    margin: 20px auto;
+    padding: 20px;
+    overflow: auto;
+}
+
+.btnclose {
+    cursor: pointer;
+
+}
+
+.input{
+    box-sizing:border-box ;
+    border: 3px solid #000000; 
+    background-color: rgb(47, 53, 53);
+    height: 38px;
+    font-size: 25px;
+    width: 50%;
+    margin: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.submit{
+    display: flex;
+    flex-direction: column;
+    background-color: #1eff00;
+    border: 3px solid #000000; 
+    border-radius: 10px;
+    color: rgb(0, 0, 0); 
+    padding: 10px 24px;
+    cursor: pointer;
+    width: 20%;
+    min-width: 0%;
+    animation: 1s ease-out slide;
+  }
