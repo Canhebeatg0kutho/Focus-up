@@ -1,6 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const Users = require('../schema/User')
+const validPassword = require('./passwordUtils').validPassword;
 
 const verifyCallback = (username, password, done) => {
 
@@ -21,3 +22,5 @@ const verifyCallback = (username, password, done) => {
             done(err);
         });
 }
+
+const strategy  = new LocalStrategy(customFields, verifyCallback);
