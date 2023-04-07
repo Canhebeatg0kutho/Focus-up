@@ -10,8 +10,6 @@ const cors = require('cors');
 const passport = require('passport')
 const session = require('express-session')
 
-const MongoStore = require('connect-mongo')(session);
-
 
 require('./backend/passport/passport')
 
