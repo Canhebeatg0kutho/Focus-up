@@ -8,6 +8,11 @@ export default function Home() {
   <Nav/>
   <h1 className={classes.title}>WELCOME TO FOCUS-UP!</h1>
   <Buttons/>
+  <div className={classes.quotes}>
+  <h1 className={classes.text}>“Learning is the only thing the mind never exhausts, never fears, and never regrets.” – Leonardo da Vinci.</h1>
+  <h1 className={classes.text}>“Success is not final, failure is not fatal: it is the courage to continue that counts.” – Winston Churchill</h1>
+  <h1 className={classes.text}>“Failure is the opportunity to begin again more intelligently.” – Henry Ford</h1>
+  </div>
   </div>
   )
 }
