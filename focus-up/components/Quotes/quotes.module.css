@@ -5,8 +5,9 @@
     height: 240px;
     width: 100%;
     flex-wrap: wrap;
-    justify-content: center; /* horizontally centers items */
-    align-items: center; /* vertically centers items */
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 30px;
   }
 
   .text{
@@ -30,3 +31,11 @@
       transform: translateY(0%);
     }
   }
+
+  @media (max-width: 1600px) {
+    .quotes {
+        margin-bottom: 500px;
+    }
+
+    
+}
