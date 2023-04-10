@@ -2,8 +2,11 @@
     display: flex;
     flex-direction: row;
     background-color: #21222A;
-    height: 200px;
+    height: 240px;
     width: 100%;
+    flex-wrap: wrap;
+    justify-content: center; /* horizontally centers items */
+    align-items: center; /* vertically centers items */
   }
 
   .text{
