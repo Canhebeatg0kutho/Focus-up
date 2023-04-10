@@ -1,9 +1,11 @@
-@keyframes slide {
+@keyframes fadeInSlideAnimation {
   0% {
-    transform: translateX(-600%);
+    opacity: 0;
+    transform: translateY(-100%);
   }
   100% {
-    transform: translateX(0%);
+    opacity: 1;
+    transform: translateY(0%);
   }
 }
 
@@ -26,6 +28,9 @@
     width: 100px;
     cursor: pointer;
     margin: 20px;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation: fadeInSlideAnimation 2s ease-out forwards;
     }
 
   

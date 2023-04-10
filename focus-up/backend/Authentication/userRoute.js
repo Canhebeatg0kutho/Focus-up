@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../schema/User");
+const User = require("../schema/user");
 const Admin = require("../schema/admin")
 const bcrypt = require("bcryptjs");
 const passport = require('passport')
