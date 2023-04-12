@@ -38,6 +38,13 @@ app.use(session({
   }
   }))
 
+  app.use((req,res,next)=>{
+    console.log(req.session);
+    console.log(req.user);
+    next();
+  })
+  
+
 // -------------------------ROUTES SETUP---------------------------//
 const userRouter = require('./backend/Authentication/userRoute')
 app.use('/users', userRouter)

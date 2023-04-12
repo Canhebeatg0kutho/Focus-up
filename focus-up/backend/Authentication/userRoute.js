@@ -5,7 +5,7 @@ const Admin = require("../schema/admin")
 const bcrypt = require("bcryptjs");
 const passport = require('passport')
 const app = express()
-const isAuth = require('../passport/auth').isAuth;
+const isAuth = require('../passport/auth').isAuth
 const genPassword= require("../passport/passwordUtils").genPassword
 app.set("view engine","ejs")
 
@@ -83,29 +83,29 @@ router.post('/register', async(req, res, next) => {
 
 router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/login-failure',  successRedirect: '/users/login-success' }))
 
-router.delete('/:id', async(req,res)=>{
-  const id = req.params.id
-  await User.findById(id)
-    .then(user => user.remove())
-    .then(user =>
-      res.status(201).json({ message: "User successfully deleted", user })
-    )
-    .catch(error =>
-      res
-        .status(400)
-        .json({ message: "An error occurred", error: error.message })
-    )
+// router.delete('/:id', async(req,res)=>{
+//   const id = req.params.id
+//   await User.findById(id)
+//     .then(user => user.remove())
+//     .then(user =>
+//       res.status(201).json({ message: "User successfully deleted", user })
+//     )
+//     .catch(error =>
+//       res
+//         .status(400)
+//         .json({ message: "An error occurred", error: error.message })
+//     )
 
-})
+// })
 
-router.get('/:username', async(req,res)=>{
-  try{
-    const specificUser = await User.findOne({username:req.params.username})
-    res.json([specificUser])
-  }catch(err){
-    res.json({message: err.message})
-  }
-})
+// router.get('/:username', async(req,res)=>{
+//   try{
+//     const specificUser = await User.findOne({username:req.params.username})
+//     res.json([specificUser])
+//   }catch(err){
+//     res.json({message: err.message})
+//   }
+// })
 
 
 
