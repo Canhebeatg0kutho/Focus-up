@@ -1,9 +1,11 @@
-@keyframes slide {
+@keyframes fadeInSlideAnimation {
   0% {
-    transform: translateX(-600%);
+    opacity: 0;
+    transform: translateY(-100%);
   }
   100% {
-    transform: translateX(0%);
+    opacity: 1;
+    transform: translateY(0%);
   }
 }
 
@@ -15,22 +17,20 @@
   }
   
   .buttons > button:hover{
-    background-color: aqua;
+    background-color: rgb(120, 131, 131);
   }
   
   .buttons > button{
-    background-color: #61DAFB;
-    border: 3px solid #000000; 
-    border-radius: 10px;
-    color: rgb(0, 0, 0); 
-    padding: 10px 24px;
+    background-color: transparent;
+    color: aqua;
+    border: 0;
+    display: inline-block;
+    width: 100px;
     cursor: pointer;
-    display: block; 
-    margin: 10px;
-    margin-top: 20px;
-    font-size:30px;
-    animation: 1s ease-out slide;
-    min-width: 0%;
+    margin: 20px;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation: fadeInSlideAnimation 2s ease-out forwards;
     }
 
   
