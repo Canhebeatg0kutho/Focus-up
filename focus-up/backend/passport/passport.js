@@ -1,11 +1,10 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
-const Users = require('../schema/User')
+const User = require('../schema/user')
 const validPassword = require('./passwordUtils').validPassword;
 
 const verifyCallback = (username, password, done) => {
-
-    Users.findOne({ username: username })
+    User.findOne({ username: username })
         .then((user) => {
 
             if (!user) { return done(null, false) }

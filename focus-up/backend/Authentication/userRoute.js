@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const passport = require('passport')
 const app = express()
 const isAuth = require('../passport/auth').isAuth;
+const genPassword= require("../passport/passwordUtils").genPassword
 app.set("view engine","ejs")
 
 // router.get('/', async (req,res) =>{
@@ -34,10 +35,9 @@ router.get('/register', (req, res, next) => {
 
 
 router.get('/login', (req, res, next) => {
-   
-  const form = '<h1>Login Page</h1><form method="POST" action="/login">\
-  Enter Username:<br><input type="text" name="uname">\
-  <br>Enter Password:<br><input type="password" name="pw">\
+  const form = '<h1>Login Page</h1><form method="POST" action="/users/login">\
+  Enter Username:<br><input type="text" name="username">\
+  <br>Enter Password:<br><input type="password" name="password">\
   <br><br><input type="submit" value="Submit"></form>';
 
   res.send(form);
@@ -51,57 +51,37 @@ router.get('/protected-route', isAuth, (req, res, next) => {
 
 
 router.get('/login-success', (req, res, next) => {
-  res.send('<p>You successfully logged in. --> <a href="/protected-route">Go to protected route</a></p>');
+  res.send('<p>You successfully logged in. --> <a href="/users/protected-route">Go to protected route</a></p>');
 });
 
 router.get('/login-failure', (req, res, next) => {
   res.send('You entered the wrong password.');
 });
 
-router.post('/register', async (req, res) => {
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
+router.post('/register', async(req, res, next) => {
+  const saltHash = genPassword(req.body.password);
+  
+  const salt = saltHash.salt;
+  const hash = saltHash.hash;
+  try{
+    const newUser = new User({
+      username: req.body.username,
+      hash: hash,
+      salt: salt,
   });
 
-  try {
-    bcrypt.hash(user.password,10).then(async (hash)=>{
-      const newUser = await User.create({
-        username: user.username,
-        password: hash
-      });
-      res.status(201).json(newUser);
-      res.redirect('/users/login')
-    })
-
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  await newUser.save()
+    
+  res.redirect('/users/login')
+  }catch(err){
+    res.status(400).json({message: err.message})
   }
   
 });
 
 
-router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/login-failure', successRedirect: '/users/login-success' }), async (req,res)=>{
-  const user = new User({
-    username: req.body.username,
-    password: req.body.password
-  });
-  try{
-    const existingUser = await User.findOne({username:user.username})
-    if(!existingUser){
-      res.status(401).json ({
-        message: "Login not successful",
-        error: "User not found",
-      })
-    }else{
-        bcrypt.compare(user.password,existingUser.password).then((result)=>{
-        result ?  res.status(201).json(existingUser) :  res.status(401).json ({message: "Login not successful", error: "User not found",})
-      })
-    }
-  } catch (err){
-    res.status(400).json({message: err.message})
-  }
-})
+
+router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/login-failure',  successRedirect: '/users/login-success' }))
 
 router.delete('/:id', async(req,res)=>{
   const id = req.params.id
@@ -115,6 +95,7 @@ router.delete('/:id', async(req,res)=>{
         .status(400)
         .json({ message: "An error occurred", error: error.message })
     )
+
 })
 
 router.get('/:username', async(req,res)=>{
