@@ -13,7 +13,7 @@ export default function Nav(){
     return(
     <div>
     <nav className={classes.nav}>
-    <Icon />
+   {/* <Icon /> */}
     <h1 className={classes.navtitle}><Link href = '/home'>FOCUS UP</Link></h1>
     <Logout/>
     </nav>
