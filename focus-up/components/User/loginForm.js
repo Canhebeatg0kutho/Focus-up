@@ -2,6 +2,7 @@ import classes from "./buttons.module.css"
 import { useState,useEffect } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
+import { isAuth } from "../../backend/passport/auth"
 export default function Form(){
     const [username, setUser] = useState("")
     const [password, setPassword] = useState("")
@@ -29,8 +30,6 @@ useEffect(() => {
         router.push('/home');
     }
 }, [isLogin])
-
-
 
     return(
         <div className={classes.container}>
