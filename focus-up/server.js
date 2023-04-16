@@ -11,9 +11,6 @@ const session = require('express-session')
 
 //-------------------------PASSPORT SETUP------------------------//
 require('./backend/passport/passport')
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 
 mongoose.connect('mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority')
@@ -43,6 +40,11 @@ app.use(session({
     console.log(req.user);
     next();
   })
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+
   
 
 // -------------------------ROUTES SETUP---------------------------//
