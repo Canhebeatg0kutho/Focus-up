@@ -13,13 +13,15 @@ const session = require('express-session')
 require('./backend/passport/passport')
 
 
+
+
 mongoose.connect('mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority')
 
 const db = mongoose.connection
 db.on('error',(error)=> console.error(error))
 db.once('open',()=> console.error('Connected to database'))
 
-app.use(cors())
+app.use(cors({credentials:true,origin:"http://localhost:3001"}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
@@ -35,15 +37,14 @@ app.use(session({
   }
   }))
 
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   app.use((req,res,next)=>{
     console.log(req.session);
     console.log(req.user);
     next();
   })
-
-app.use(passport.initialize());
-app.use(passport.session());
-
 
   
 

@@ -8,20 +8,21 @@ export default function Form(){
     const [isLogin, setLogin] = useState(false)
     const router = useRouter()
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    const configuration = {
-        method: "post",
-        url:"http://localhost:3000/users/login",
-        data:{
-            username,
-            password,
-        }
-    }
-    axios(configuration)
-    .then((result) => {setLogin(true);})
-    .catch((error) => {error = new Error();})
-}
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:3000/users/login", {
+          username,
+          password,
+        }, {
+          withCredentials: true,
+        })
+        .then((result) => {
+          setLogin(true);
+        })
+        .catch((error) => {
+          error = new Error();
+        });
+      }
 
 useEffect(() => {
     if (isLogin) {
@@ -39,7 +40,7 @@ useEffect(() => {
             <h3 className={classes.email}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
-            { isLogin ? <p>Redirecting...</p> : (<p className={classes.failure}>This user does not exist</p> )}
+            { isLogin ? <p className={classes.failure}>Redirecting...</p> : (<p className={classes.failure}>This user does not exist</p> )}
             </form>
         </div>
     )
