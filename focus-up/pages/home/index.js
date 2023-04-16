@@ -3,8 +3,6 @@ import classes from './home.module.css'
 import Buttons from '../../components/Tabs/Buttons';
 import Quotes from '../../components/Quotes/quotes';
 import Vids from '../../components/Videos/vids';
-
-
 export default function Home() {
   return (
   <div> 
@@ -17,3 +15,4 @@ export default function Home() {
   </div>
   )
 }
+
