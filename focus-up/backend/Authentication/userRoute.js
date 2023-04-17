@@ -79,9 +79,8 @@ router.post('/register', async(req, res, next) => {
   
 });
 
-
-
-router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/login-failure',  successRedirect: '/users/login-success' }))
+router.post('/login',passport.authenticate('local'))
+router.get('/session')
 
 // router.delete('/:id', async(req,res)=>{
 //   const id = req.params.id

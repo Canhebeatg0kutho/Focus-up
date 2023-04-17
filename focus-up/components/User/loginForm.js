@@ -3,31 +3,36 @@ import { useState,useEffect } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
 import { isAuth } from "../../backend/passport/auth"
+import Cookies from "js-cookie"
 export default function Form(){
     const [username, setUser] = useState("")
     const [password, setPassword] = useState("")
     const [isLogin, setLogin] = useState(false)
     const router = useRouter()
+    const sid = Cookies.get('session') || ''
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        axios.post("http://localhost:3000/users/login", {
+       const result = await axios.post("http://localhost:3000/users/login", {
           username,
           password,
         }, {
           withCredentials: true,
         })
-        .then((result) => {
-          setLogin(true);
-        })
-        .catch((error) => {
-          error = new Error();
-        });
+        try{
+          if(sid){
+            setLogin(true);   
+          }
+          console.log(result.data)
+          console.log(sid)
+        }catch(error){
+          console.log(error)
+        }
       }
-
 useEffect(() => {
     if (isLogin) {
         router.push('/home');
+        console.log(isLogin)
     }
 }, [isLogin])
 
