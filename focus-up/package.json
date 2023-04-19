@@ -16,6 +16,7 @@
     "body-parser": "^1.20.2",
     "connect-ensure-login": "^0.1.1",
     "connect-mongo": "^5.0.0",
+    "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
     "dayjs": "^1.11.6",
     "ejs": "^3.1.8",

@@ -8,7 +8,7 @@ const Mongoose = require("mongoose")
 const cors = require('cors');
 const passport = require('passport')
 const session = require('express-session')
-
+const MongoStore = require('connect-mongodb-session')(session)
 //-------------------------PASSPORT SETUP------------------------//
 require('./backend/passport/passport')
 
@@ -27,11 +27,16 @@ app.use(express.urlencoded({extended: true}));
 
 
 //-------------------------SESSION SETUP--------------------------//
+const store  = new MongoStore({
+  uri:'mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority',
+  collection:'sessionStore'
+})
 
 app.use(session({
   secret: "secret",
   resave: false,
   saveUninitialized:true,
+  store:store,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 // Equals 1 day (1 day * 24 hr/1 day * 60 min/1 hr * 60 sec/1 min * 1000 ms / 1 sec)
   }

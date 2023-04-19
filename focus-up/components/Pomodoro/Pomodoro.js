@@ -66,7 +66,7 @@ export default function Pomodoro(){
         <div className={classes.pomodoro}> 
            <div className={classes.message}>
             {/* If displaymessage is true show message, if false, dont */}
-             {displayMessage ? "Break time! New Session starts in:" : "Get back to work maggot"}
+             {displayMessage ? "Break time! New Session starts in:" : "Get back to work "}
            </div>
         <div className={classes.timer}>{timerMinutes}:{timerSeconds}</div>
         <div className={classes.buttonsContainer}> 

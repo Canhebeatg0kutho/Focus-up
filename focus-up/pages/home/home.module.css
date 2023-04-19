@@ -44,6 +44,7 @@
    width: 500px;
    margin: 20px;
    font-family: "Lucida Handwriting";
+   font-size: 80px;
    animation-iteration-count: 1;
    animation-fill-mode: forwards;
    animation: fadeInSlideAnimation 2s ease-out forwards;
