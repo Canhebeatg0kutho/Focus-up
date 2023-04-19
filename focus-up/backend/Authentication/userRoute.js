@@ -45,7 +45,7 @@ router.get('/login', (req, res, next) => {
 });
 
 router.get('/protected-route', isAuth, (req, res, next) => {
-  res.send('You made it to the route.');
+  res.send('You made it to the route.<a href="/users/logout">Logout</a> ');
 });
 
 
@@ -83,6 +83,14 @@ router.post('/register', async(req, res, next) => {
 
 router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/login-failure',  successRedirect: '/users/login-success' }))
 
+router.get('/logout',isAuth, (req, res) => {
+  res.clearCookie('connect.sid');
+  res.redirect('/users');
+
+
+});
+
+
 // router.delete('/:id', async(req,res)=>{
 //   const id = req.params.id
 //   await User.findById(id)
@@ -106,7 +114,6 @@ router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/lo
 //     res.json({message: err.message})
 //   }
 // })
-
 
 
 module.exports = router;
