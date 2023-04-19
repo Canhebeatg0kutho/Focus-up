@@ -1,26 +1,19 @@
-
 if(process.env.NODE_ENV !=='production'){
-    require('dotenv').config
+  require('dotenv').config
 }
 const express = require("express")
 const { default: mongoose } = require("mongoose")
 const app = express()
 const Mongoose = require("mongoose")
-const bodyParser = require('body-parser')
-const flash = require('express-flash')
-const session = require('express-session')
 const cors = require('cors');
-// const MongoStore = require('connect-mongo')(session);
-
-var path = require("path");
-
-const initializePassport= require('./backend/Passport/passport-config')
 const passport = require('passport')
-initializePassport(
-passport,
-username => User.find(user => user.username === username),
- id => User.find(user => user.id === id)
-)
+const session = require('express-session')
+const MongoStore = require('connect-mongodb-session')(session)
+//-------------------------PASSPORT SETUP------------------------//
+require('./backend/passport/passport')
+
+
+
 
 mongoose.connect('mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority')
 
@@ -28,30 +21,39 @@ const db = mongoose.connection
 db.on('error',(error)=> console.error(error))
 db.once('open',()=> console.error('Connected to database'))
 
-app.use(cors())
+app.use(cors({credentials:true,origin:"http://localhost:3001"}))
 app.use(express.json())
-app.set("view engine","ejs")
-app.use(flash())
+app.use(express.urlencoded({extended: true}));
 
-// const sessionStore = new MongoStore({
-//   mongooseConnection: connection,
-//   collection: 'sessions'
-// });
+
+//-------------------------SESSION SETUP--------------------------//
+const store  = new MongoStore({
+  uri:'mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority',
+  collection:'sessionStore'
+})
 
 app.use(session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: true,
-  //  store: sessionStore,
-    cookie:{
-      maxAge: 1000 * 60 * 60 * 24
-    }
-}))
-app.use(passport.initialize())
-app.use(passport.session())
+  secret: "secret",
+  resave: false,
+  saveUninitialized:true,
+  store:store,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 // Equals 1 day (1 day * 24 hr/1 day * 60 min/1 hr * 60 sec/1 min * 1000 ms / 1 sec)
+  }
+  }))
 
-app.use(bodyParser.urlencoded({extended: false}))
+  app.use(passport.initialize());
+  app.use(passport.session());
 
+  app.use((req,res,next)=>{
+    console.log(req.session);
+    console.log(req.user);
+    next();
+  })
+
+  
+
+// -------------------------ROUTES SETUP---------------------------//
 const userRouter = require('./backend/Authentication/userRoute')
 app.use('/users', userRouter)
 
@@ -67,10 +69,10 @@ app.use('/notes',notesRouter)
 const timerRouter = require('./backend/Authentication/timerRoute')
 app.use('/timer',timerRouter)
 
-app.use((req,res,next)=>{
-  res.status(401).send('NOT_FOUND');
-})
 
-app.set('views', path.join(__dirname, '/views'));
+
+app.use((req,res,next)=>{
+res.status(401).send('NOT_FOUND');
+})
 
 app.listen(3000,()=> console.log('Server Started'))

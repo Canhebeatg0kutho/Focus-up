@@ -2,34 +2,39 @@ import classes from "./buttons.module.css"
 import { useState,useEffect } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
+import { isAuth } from "../../backend/passport/auth"
 export default function Form(){
     const [username, setUser] = useState("")
     const [password, setPassword] = useState("")
     const [isLogin, setLogin] = useState(false)
     const router = useRouter()
 
-const handleSubmit = (e) => {
-    e.preventDefault();
-    const configuration = {
-        method: "post",
-        url:"http://localhost:3000/users/login",
-        data:{
-            username,
-            password,
+    const handleSubmit = async(e) => {
+        e.preventDefault();
+        await axios.post("http://localhost:3000/users/login", {
+          username,
+          password,
+        }, {
+          withCredentials: true,
+        })
+        const res = await axios.get("http://localhost:3000/users/protected-route", {
+          withCredentials: true,
+        });
+       try {
+       if(res.status == 200){
+          setLogin(true);
         }
-    }
-    axios(configuration)
-    .then((result) => {setLogin(true);})
-    .catch((error) => {error = new Error();})
-}
+        }
+        catch(error){
+          console.log(error)
+        };
+      }
 
 useEffect(() => {
     if (isLogin) {
         router.push('/home');
     }
 }, [isLogin])
-
-
 
     return(
         <div className={classes.container}>
@@ -39,10 +44,8 @@ useEffect(() => {
             <h3 className={classes.email}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
-            { isLogin ? <p>Redirecting...</p> : (<p className={classes.failure}>This user does not exist</p> )}
+            { isLogin ? <p className={classes.failure}>Redirecting...</p> : (<p className={classes.failure}>This user does not exist</p> )}
             </form>
         </div>
     )
 }
-
-
