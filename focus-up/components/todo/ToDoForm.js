@@ -7,24 +7,26 @@ const ToDoForm = ({ addTask }) => {
 
     //Takes in user input
     const [task,setTask] = useState('')
-    const [isCompleted,setComplete] = useState(false)
 
      //when input is submitted, the addTask prop passed down is called, it adds the current userInput when submit is entered. It then clears the input.
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-        const configuration = {
-            method: "post",
-            url:"http://localhost:3000/todo",
-            data:{
-                task,
-            }
-        }
-        axios(configuration)
-        .then((result) => {
-        addTask(task);
-        setTask(" ");
-    })
-        .catch((error) => {error = new Error();})
+        await fetch(`http://localhost:3000/todo`, {
+            method: "POST",
+            Accept: "application/json",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              task: task,
+            }),
+          });
+          try{
+            addTask();
+            setTask(" ");
+          }catch(error){
+           console.log(error)
+    }
     }
 
     return (
