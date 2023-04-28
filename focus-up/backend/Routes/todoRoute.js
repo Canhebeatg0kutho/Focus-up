@@ -6,7 +6,6 @@ router.post('/', async (req, res) => {
     const todo = new Todo({
       task: req.body.task,
     });
-  
     try {
       const newTodo = await todo.save();
       res.status(201).json(newTodo);
@@ -25,7 +24,7 @@ router.post('/', async (req, res) => {
   })
   
 
-  router.delete('/delete/:id', async(req,res)=>{
+  router.delete('/delete', async(req,res)=>{
     try{
       const tasks = await Todo.deleteMany({complete: true})
       res.status(201).json({message: "Tasks successfuly deleted",tasks})
@@ -35,10 +34,9 @@ router.post('/', async (req, res) => {
   })
 
   router.patch("/update/:id", async(req,res)=>{
-    const todo =  await Todo.findById(req.params.id)
     try{
       const todoUpdate = await Todo.findByIdAndUpdate(req.params.id, {
-        complete : !todo.complete,
+        complete : !Todo.complete,
       })
       res.status(201).json({ message: "task updated", todoUpdate })
     } catch(err) {

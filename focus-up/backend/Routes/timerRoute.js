@@ -24,19 +24,5 @@ router.patch("/edit", async (req, res) => {
   }
 });
 
-router.post("/create",async(req,res)=>{
-  const create = new Timer({
-    title:req.body.title,
-    minutes:req.body.minutes,
-    seconds:req.body.seconds
-  })
-  try{
-    const newTimer = await create.save()
-    res.json(newTimer)
-  }catch(err){
-
-  }
-})
-
 
 module.exports = router;

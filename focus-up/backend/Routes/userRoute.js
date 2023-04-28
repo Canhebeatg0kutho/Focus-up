@@ -79,8 +79,6 @@ router.post('/register', async(req, res, next) => {
   
 });
 
-
-
 router.post('/login',passport.authenticate('local',{ failureRedirect: '/users/login-failure',  successRedirect: '/users/login-success' }))
 
 router.get('/logout',isAuth, (req, res) => {

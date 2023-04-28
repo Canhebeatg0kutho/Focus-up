@@ -35,8 +35,8 @@ console.log([toDoList])
   }
 
   //filters a new array filled with tasks whose complete parameter say "false"
-  const handleFilter = (id) => {
-    axios.delete(`http://localhost:3000/todo/delete/${id}`)
+  const handleFilter = () => {
+    axios.delete(`http://localhost:3000/todo/delete`)
       .then(() => {
         let filtered = toDoList.filter(task => !task.complete);
         setToDoList(filtered);
