@@ -61,7 +61,7 @@ const adminRouter = require('./backend/Routes/adminRoute')
 app.use('/admin',adminRouter)
 
 const todoRouter = require('./backend/Routes/todoRoute')
-app.use('/todo',todoRouter)
+app.use('/todo',todoRouter) 
 
 const notesRouter = require('./backend/Routes/notesRoute')
 app.use('/notes',notesRouter)

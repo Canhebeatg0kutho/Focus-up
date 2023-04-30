@@ -89,29 +89,5 @@ router.get('/logout',isAuth, (req, res) => {
 });
 
 
-// router.delete('/:id', async(req,res)=>{
-//   const id = req.params.id
-//   await User.findById(id)
-//     .then(user => user.remove())
-//     .then(user =>
-//       res.status(201).json({ message: "User successfully deleted", user })
-//     )
-//     .catch(error =>
-//       res
-//         .status(400)
-//         .json({ message: "An error occurred", error: error.message })
-//     )
-
-// })
-
-// router.get('/:username', async(req,res)=>{
-//   try{
-//     const specificUser = await User.findOne({username:req.params.username})
-//     res.json([specificUser])
-//   }catch(err){
-//     res.json({message: err.message})
-//   }
-// })
-
 
 module.exports = router;
