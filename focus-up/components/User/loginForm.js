@@ -11,19 +11,13 @@ export default function Form(){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await fetch("http://localhost:3000/users/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            username,
-            password,
-          }),
+        await axios.post("http://localhost:3000/users/login", {
+          username,
+          password,
+        }, {
           withCredentials: true,
-        });
-    
-        const res = await fetch("http://localhost:3000/users/protected-route", {
+        })
+        const res = await axios.get("http://localhost:3000/users/protected-route", {
           withCredentials: true,
         });
        try {
