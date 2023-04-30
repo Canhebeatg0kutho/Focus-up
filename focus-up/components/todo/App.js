@@ -35,15 +35,16 @@ console.log([toDoList])
   }
 
   //filters a new array filled with tasks whose complete parameter say "false"
-  const handleFilter = (id) => {
-    axios.delete(`http://localhost:3000/todo/delete/${id}`)
-      .then(() => {
-        let filtered = toDoList.filter(task => !task.complete);
-        setToDoList(filtered);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+  const handleFilter = () => {
+    fetch('http://localhost:3000/todo/delete', {
+      method: 'DELETE',
+    })
+    try{
+      const filtered = toDoList.filter(task => !task.complete);
+      setToDoList(filtered);
+    }catch(error){
+      console.log(error)
+    }
   }
 
   //This function takes in userInput from form class. Creates a copy of the toDoList Array, then sets the copy variable to include the existing array copied,

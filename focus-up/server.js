@@ -54,19 +54,19 @@ app.use(session({
   
 
 // -------------------------ROUTES SETUP---------------------------//
-const userRouter = require('./backend/Authentication/userRoute')
+const userRouter = require('./backend/Routes/userRoute')
 app.use('/users', userRouter)
 
-const adminRouter = require('./backend/Authentication/adminRoute')
+const adminRouter = require('./backend/Routes/adminRoute')
 app.use('/admin',adminRouter)
 
-const todoRouter = require('./backend/Authentication/todoRoute')
-app.use('/todo',todoRouter)
+const todoRouter = require('./backend/Routes/todoRoute')
+app.use('/todo',todoRouter) 
 
-const notesRouter = require('./backend/Authentication/notesRoute')
+const notesRouter = require('./backend/Routes/notesRoute')
 app.use('/notes',notesRouter)
 
-const timerRouter = require('./backend/Authentication/timerRoute')
+const timerRouter = require('./backend/Routes/timerRoute')
 app.use('/timer',timerRouter)
 
 

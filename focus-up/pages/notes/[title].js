@@ -67,12 +67,7 @@ console.log(data)
             ))}
 
             <div className={classes.text}>
-                <textarea rows="50" cols="80" placeholder="Enter details here..." onChange={(event) => setNote(event.target.value)}> 
-                {
-                    notes.map(note =>(
-                        `${note.note}`
-                    ))
-                }
+                <textarea rows="50" cols="80" placeholder="Enter details here..." onChange={(event) => setNote(event.target.value)} defaultValue={notes.map(note =>(note.note))}> 
                 </textarea>
                 <button className={classes.save} onClick={async () => {makeNote({note:noteText})}}>Save</button>
     

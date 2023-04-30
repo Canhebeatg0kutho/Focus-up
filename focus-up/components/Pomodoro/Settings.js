@@ -4,9 +4,11 @@ import classes from "./pomo.module.css"
 
 
 export default function Settings(){
-    const[title,setTitle] = useState('')
+    const[title,setTitle] = useState("Work")
     const[newSeconds,setSeconds]= useState('')
     const[newMinutes,setMinutes]= useState('')
+    const[currentState,changeState]= useState(true)
+  
 
     const editTimer = async() => {
      await fetch("http://localhost:3000/timer/edit", {
@@ -22,16 +24,16 @@ export default function Settings(){
       }),
     });
 }
+
+const handleClick = () =>{
+    currentState ? setTitle("Work") : setTitle("Break")
+    changeState(!currentState)
+}
     return(
         <div>
+          <p className={classes.settingsTitle}>settinngs for {title}</p>
+          <button onClick={() => handleClick()}> Change settings</button>
          <form className={classes.form}>
-         <input
-            type="text"
-            className={classes.input}
-            placeholder="Enter  title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
           <input
             type="text"
             className={classes.input}
