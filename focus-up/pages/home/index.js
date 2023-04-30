@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await axios.get("http://localhost:3000/users/protected-route", {
+        const res = await axios.get("http://54.83.151.50:3000/users/protected-route", {
           withCredentials: true,
         });
         setData(res.data);
