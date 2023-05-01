@@ -9,7 +9,7 @@ import Create from "../../components/NotesFunctions/create";
 import Update from "../../components/NotesFunctions/update";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://localhost:3000/notes");
+  const res = await fetch("http://3.211.182.247:3000/notes");
   const data = await res.json();
 
   return {

@@ -5,7 +5,7 @@ import classes from "../../pages/notes/notes.module.css";
 export default function Delete() {
   const [deleteTitle, setDeleted] = useState("");
   const deleteNote = async (deleteTitle) => {
-    await fetch(`http://localhost:3000/notes/delete/title/${deleteTitle}`, {
+    await fetch(`http://3.211.182.247:3000/notes/delete/title/${deleteTitle}`, {
       method: "DELETE",
       Accept: "application/json",
       headers: {

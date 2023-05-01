@@ -14,7 +14,7 @@ function App() {
 useEffect(() => {
 const configuration = {
   method: "get",
-  url:"http://localhost:3000/todo"
+  url:"http://3.211.182.247:3000/todo"
 }
 axios(configuration)
 .then((result) => {setToDoList(result.data)})
@@ -26,7 +26,7 @@ console.log([toDoList])
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
     // If the id's complete parameter is set to the opposite of its current state, otherwise it displays as normal
-    axios.patch(`http://localhost:3000/todo/update/${id}`)
+    axios.patch(`http://3.211.182.247:3000/todo/update/${id}`)
     let mapped = toDoList.map(todo => {
       return todo._id === id ? { ...todo, complete: !todo.complete } : { ...todo};
     });
@@ -36,7 +36,7 @@ console.log([toDoList])
 
   //filters a new array filled with tasks whose complete parameter say "false"
   const handleFilter = () => {
-    fetch('http://localhost:3000/todo/delete', {
+    fetch('http://3.211.182.247:3000/todo/delete', {
       method: 'DELETE',
     })
     try{
@@ -50,7 +50,7 @@ console.log([toDoList])
   //This function takes in userInput from form class. Creates a copy of the toDoList Array, then sets the copy variable to include the existing array copied,
   // And adds a todo with an incremented id, a task which is assigned the userInput, and sets complete to false
   const addTask = async() => {
-    const updated = await axios.get("http://localhost:3000/todo")
+    const updated = await axios.get("http://3.211.182.247 :3000/todo")
     setToDoList(updated.data);
   }
 
