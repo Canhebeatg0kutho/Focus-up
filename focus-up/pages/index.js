@@ -22,8 +22,6 @@ export default function Welcome(){
             <h3 className={classes.role}>Users:</h3>
             <Signup/>
             <Login/>
-            <h3 className={classes.role}>Admins:</h3>
-            <Admin/>
             </div>
             </div>
             </div>
