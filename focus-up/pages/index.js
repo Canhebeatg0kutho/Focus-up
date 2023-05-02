@@ -11,19 +11,7 @@ export default function Welcome(){
     return(
         <div>
             <div className={classes.container}>
-            <div className={classes.imagecontainer}>
-            <img className={classes.image} src={pic}></img>
-            </div>
-            <div className={classes.words}>
-            <LogoSmall/>
-            <h1 className={classes.phrase}>Get stuck in</h1>
-            <h1 className={classes.para}>Join FOCUS-UP today</h1>
-            <div className={classes.signup}>
-            <h3 className={classes.role}>Users:</h3>
-            <Signup/>
-            <Login/>
-            </div>
-            </div>
+           
             </div>
             <div className={classes.logo}>
                 <div className={classes.inLogo}>
@@ -31,6 +19,16 @@ export default function Welcome(){
                 <Logo/>
                 </div>
             </div>
+            <div className = {classes.words}>
+            <h1 className={classes.phrase}>Get stuck in</h1>
+            </div>
+            <div className={classes.signupcontainer}>
+            <div className={classes.signup}>
+            <Signup/>
+            <Login/>
+            </div>
+            </div>
+
         </div>
     )
 }

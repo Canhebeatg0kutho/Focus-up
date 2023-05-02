@@ -4,38 +4,27 @@
   flex-direction: row;
 }
 
-.imagecontainer{
-  display: flex;
-  flex-direction: row;
-  width: 50%;
-  background-color: aliceblue
-
-}
-
-.imagecontainer > .image{
- width: 100%;
- height: 100%;
-}
 
 .words{
   display: flex;
-  flex-direction: column;
-  width: 50%;
-  background-color: white;
+  flex-direction: row;
 }
-
  .words > .phrase{
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 48px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.words > .para{
-  color: black;
-  font-size: 30px;
-  margin-left: auto;
-  margin-right: auto;
+.bigcontainer{
+  display: flex;
+  flex-direction: row;
+  background-color: aqua;
+}
+
+.signupcontainer{
+display: flex;
+flex-direction: column;
 }
 
 .signup{
@@ -53,8 +42,4 @@
   display: flex;
   margin-left: auto;
   margin-right: auto;
-}
-
-.signup > .role{
-  color: black;
 }
