@@ -14,6 +14,9 @@
   font-size: 48px;
   margin-left: auto;
   margin-right: auto;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation: fadeInSlideAnimation 2s ease-out forwards;
 }
 
 .bigcontainer{
@@ -25,6 +28,9 @@
 .signupcontainer{
 display: flex;
 flex-direction: column;
+animation-iteration-count: 1;
+animation-fill-mode: forwards;
+animation: fadeInSlideAnimation 2s ease-out forwards;
 }
 
 .signup{
@@ -36,10 +42,26 @@ flex-direction: column;
   display: flex;
   flex-direction: row;
   font-size: 50px;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation: fadeInSlideAnimation 2s ease-out forwards;
 }
 
 .logo > .inLogo{
   display: flex;
   margin-left: auto;
   margin-right: auto;
+}
+
+
+
+@keyframes fadeInSlideAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
 }
