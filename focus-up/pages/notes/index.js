@@ -58,7 +58,6 @@ export default function Notes({ notes }) {
       ))}
 
       <Create />
-      <Delete />
       <Update />
     </div>
   );

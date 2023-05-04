@@ -35,40 +35,42 @@ export default function search() {
   },[titles])
 
   return (
+    
     <div>
-     
+      {/* FIND NOTE */}
+      <h1 className={classes.title}>FIND NOTE</h1>
       {titles.map((title) => (
         <Link href={"/notes/" + title.title} key={title._id}>
           <a>
             <div>
-            <p>Results:</p>
+            <h1>Results:</h1>
               <button className={classes.noteTitle}>{title.title}</button>
             </div>
           </a>
         </Link>
       ))}
-
-      {/* FIND NOTE */}
-      <h1 className={classes.title}>FIND NOTE</h1>
       <div>
-        <div>
+        <div className={classes.inputContainer}>
           <input
             type="text"
-            className={classes.input}
+            className={classes.findinput}
             placeholder="Find a note"
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
           <button
-            className={classes.submit}
+            className={classes.search}
             onClick={async () => {
               search();
             }}
           >
             Find
           </button>
+
+
         </div>
       </div>
+
     </div>
   );
 }

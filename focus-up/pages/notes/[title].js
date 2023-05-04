@@ -34,10 +34,6 @@ console.log(data)
     }
   }
 
-
-
-
-
   export default function NotesDetail({notes}){
     const title = notes.map(title =>(
         title.title
