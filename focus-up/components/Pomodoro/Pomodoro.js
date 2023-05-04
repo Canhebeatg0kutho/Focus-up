@@ -35,15 +35,10 @@ export default function Pomodoro(){
                 } 
                 //If minutes is 0 that means timer has ended, enter next state
                 else{
-                  //if display message is true, minutes is 24 if false, 4 
                   
                  fetchTimer(status)
-                  displayMessage ? setStatus("Work"):setStatus("Break")
-                  
-                  // let sec = 59;
+                  displayMessage ? (setStatus("Work"), alert("Break has ended")):(setStatus("Break"), alert("Time for a break"))
                    setPause(true);
-                  // setSeconds(sec);
-                  // setMinutes(min);
                   //Opposite of current displayMessage
                   setDisplayMessage(!displayMessage);
                 }
