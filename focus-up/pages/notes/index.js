@@ -15,27 +15,51 @@ export const getStaticProps = async () => {
   return {
     props: { notes: data },
   };
-}
+};
 
 export default function Notes({ notes }) {
+  const [isDeleted, setDeleted] = useState("");
+  const deleteNote = async (deleteTitle) => {
+    try {
+      await fetch(`http://localhost:3000/notes/delete/title/${deleteTitle}`, {
+        method: "DELETE",
+        Accept: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setDeleted(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div>
       <Nav />
       <Buttons />
-      <Search/>
+      <Search />
       {notes.map((note) => (
-        <Link href={"/notes/" + note.title} key={note.id}>
-          <a>
-            <div>
-              <button className={classes.noteTitle}>{note.title}</button>
-            </div>
-          </a>
-        </Link>
+        <div className={classes.container}>
+          <Link href={"/notes/" + note.title} key={note.id}>
+            <a>
+              <div>
+                <button className={classes.noteTitle}>{note.title}</button>
+              </div>
+            </a>
+          </Link>
+            <button
+              onClick={async () => deleteNote(note.title)}
+              className={classes.delete}
+            >
+              X
+            </button>
+        </div>
       ))}
 
-      <Create/>
-      <Delete/>
-      <Update/>
-      </div>
+      <Create />
+      <Delete />
+      <Update />
+    </div>
   );
 }
