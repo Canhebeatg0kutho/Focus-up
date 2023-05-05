@@ -35,7 +35,6 @@ export default function search() {
   },[titles])
 
   return (
-    
     <div>
       {/* FIND NOTE */}
       <h1 className={classes.title}>FIND NOTE</h1>

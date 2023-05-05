@@ -18,7 +18,10 @@ export const getStaticProps = async () => {
 };
 
 export default function Notes({ notes }) {
-  const [isDeleted, setDeleted] = useState("");
+  const [isDeleted, setDeleted] = useState(false);
+  const refresh = () => {
+    window.location.reload(true)
+  }
   const deleteNote = async (deleteTitle) => {
     try {
       await fetch(`http://localhost:3000/notes/delete/title/${deleteTitle}`, {
@@ -33,6 +36,12 @@ export default function Notes({ notes }) {
       console.log(err);
     }
   };
+
+  useEffect(()=>{
+    if(isDeleted){
+      refresh()
+    }
+  },[isDeleted])
 
   return (
     <div>
