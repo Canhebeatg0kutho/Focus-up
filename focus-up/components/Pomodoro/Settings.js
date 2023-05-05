@@ -26,14 +26,15 @@ export default function Settings(){
 }
 
 const handleClick = () =>{
+  changeState(!currentState)
     currentState ? setTitle("Work") : setTitle("Break")
-    changeState(!currentState)
+
 }
     return(
         <div>
-          <p className={classes.settingsTitle}>settinngs for {title}</p>
-          <button onClick={() => handleClick()}> Change settings</button>
-         <form className={classes.form}>
+         <div className={classes.form}>
+         <p className={classes.settingsTitle}>Settings for {title}</p>
+         <button className={classes.change} onClick={() => handleClick()}> Change settings</button>
           <input
             type="text"
             className={classes.input}
@@ -48,11 +49,12 @@ const handleClick = () =>{
             value={newSeconds}
             onChange={(e) => setSeconds(e.target.value)}
           />
-         </form>
-         <button className={classes.submit} onClick={async () => {
+           <button className={classes.submit} onClick={async () => {
               editTimer( { title: title, minutes:newMinutes,seconds:newSeconds });
             }}
           >Submit</button>
+         </div>
+
         </div>
     )
 }

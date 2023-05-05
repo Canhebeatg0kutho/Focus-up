@@ -1,6 +1,4 @@
 import classes from "./pomo.module.css";
-
-
 export default function Popup(props){
     return(
         <div className={classes.popupbox}>
