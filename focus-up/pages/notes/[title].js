@@ -2,7 +2,6 @@ import { useRouter } from "next/router"
 import Nav from "../../components/nav"
 import Buttons from "../../components/Tabs/Buttons"
 import Link from 'next/link';
-import Text from "../../components/TextArea/text"
 import classes from "./notes.module.css"
 import { useState } from "react";
 
@@ -41,7 +40,7 @@ console.log(data)
     const [noteText,setNote] = useState("")
     const makeNote = async() =>{
          await fetch(
-            `http://3.211.182.247 :3000/notes/update/note/${title}`,
+            `http://localhost:3000/notes/update/note/${title}`,
            {
               method:'PATCH',
               Accept: "application/json",
@@ -59,14 +58,15 @@ console.log(data)
             <Nav/>
             <Buttons/>
             {notes.map(note =>(
-                <h1 key={note.id}>{note.title} Notes</h1>
+                <div className={classes.notecontainer}>
+                 <h1 className={classes.notealign} key={note.id}>{note.title} Notes</h1>
+               </div>
+
             ))}
 
             <div className={classes.text}>
-                <textarea rows="50" cols="80" placeholder="Enter details here..." onChange={(event) => setNote(event.target.value)} defaultValue={notes.map(note =>(note.note))}> 
-                </textarea>
+                <textarea rows="50" cols="80" placeholder="Enter details here..." onChange={(event) => setNote(event.target.value)} defaultValue={notes.map(note =>(note.note))}></textarea>
                 <button className={classes.save} onClick={async () => {makeNote({note:noteText})}}>Save</button>
-    
             </div>
         </div>
     )

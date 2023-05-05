@@ -1,7 +1,7 @@
 
 .text{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
   
   }
@@ -9,12 +9,12 @@
   .text > textarea{
     margin-left: auto;
     margin-right: auto;
-    border: none;
+    border: 5px solid #00ffff; 
     resize: none;
     background-color: #21222A;
     font-size: 20px;
   }
-
+  
   .save{
     background-color: #1eff00;
     border: 3px solid #000000; 
@@ -135,3 +135,15 @@
   flex-direction: row;
 }
 
+
+.notecontainer{
+  display: flex;
+  flex-direction: row;
+}
+
+.notealign{
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 50px;
+  margin-top: 0px;
+}
