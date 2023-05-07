@@ -9,11 +9,14 @@ export default function Form(){
     const [isRegister, setRegister] = useState(false)
     const router = useRouter()
 
+    const refresh = () => {
+        window.location.reload(true)
+      }
 const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
         method: "post",
-        url:"http://3.211.182.247:3000/users/register",
+        url:"http://3.211.182.247/users/register",
         data:{
             username,
             password,
@@ -27,16 +30,16 @@ const handleSubmit = (e) => {
 
 useEffect(() => {
     if (isRegister) {
-        router.push('/home');
+        refresh()
     }
 }, [isRegister])
 
     return(
         <div className={classes.container}>
             <form onSubmit={handleSubmit}  >
-            <h3 className={classes.email}>Enter username *</h3>
+            <h3 className={classes.username}>Enter username *</h3>
             <input className={classes.input} type="text" value={username} placeholder="Enter username..." onChange={(e) => setUser(e.target.value)} required />
-            <h3 className={classes.email}>Enter password *</h3>
+            <h3 className={classes.username}>Enter password *</h3>
             <input className={classes.input} type="password" value={password} placeholder="Enter Password..." onChange={(e) => setPassword(e.target.value)} required/>
             <button onClick={handleSubmit} className={classes.submit}>Submit</button>
             { isRegister ?  <p>Redirecting...</p> : (<p className={classes.failure}>You Are Not Registered</p> )}

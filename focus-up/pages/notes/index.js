@@ -9,33 +9,65 @@ import Create from "../../components/NotesFunctions/create";
 import Update from "../../components/NotesFunctions/update";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://3.211.182.247:3000/notes");
+  const res = await fetch("http://3.211.182.247/notes");
   const data = await res.json();
 
   return {
     props: { notes: data },
   };
-}
+};
 
 export default function Notes({ notes }) {
+  const [isDeleted, setDeleted] = useState(false);
+  const refresh = () => {
+    window.location.reload(true)
+  }
+  const deleteNote = async (deleteTitle) => {
+    try {
+      await fetch(`http://3.211.182.247/notes/delete/title/${deleteTitle}`, {
+        method: "DELETE",
+        Accept: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      setDeleted(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(()=>{
+    if(isDeleted){
+      refresh()
+    }
+  },[isDeleted])
+
   return (
     <div>
       <Nav />
       <Buttons />
-      <Search/>
+      <Search />
       {notes.map((note) => (
-        <Link href={"/notes/" + note.title} key={note.id}>
-          <a>
-            <div>
-              <button className={classes.noteTitle}>{note.title}</button>
-            </div>
-          </a>
-        </Link>
+        <div className={classes.container}>
+          <Link href={"/notes/" + note.title} key={note.id}>
+            <a>
+              <div>
+                <button className={classes.noteTitle}>{note.title}</button>
+              </div>
+            </a>
+          </Link>
+            <button
+              onClick={async () => deleteNote(note.title)}
+              className={classes.delete}
+            >
+              X
+            </button>
+        </div>
       ))}
 
-      <Create/>
-      <Delete/>
-      <Update/>
-      </div>
+      <Create />
+      <Update />
+    </div>
   );
 }

@@ -14,7 +14,7 @@ function App() {
 useEffect(() => {
 const configuration = {
   method: "get",
-  url:"http://3.211.182.247:3000/todo"
+  url:"http://3.211.182.247/todo"
 }
 axios(configuration)
 .then((result) => {setToDoList(result.data)})
@@ -26,7 +26,7 @@ console.log([toDoList])
   const handleToggle = (id) => {
     //Maps over toDoList, displays the list of tasks using spread operator. If task is clicked, the id of the task is found. 
     // If the id's complete parameter is set to the opposite of its current state, otherwise it displays as normal
-    axios.patch(`http://3.211.182.247:3000/todo/update/${id}`)
+    axios.patch(`http://3.211.182.247/todo/update/${id}`)
     let mapped = toDoList.map(todo => {
       return todo._id === id ? { ...todo, complete: !todo.complete } : { ...todo};
     });
@@ -36,7 +36,7 @@ console.log([toDoList])
 
   //filters a new array filled with tasks whose complete parameter say "false"
   const handleFilter = () => {
-    fetch('http://3.211.182.247:3000/todo/delete', {
+    fetch('http://3.211.182.247/todo/delete', {
       method: 'DELETE',
     })
     try{

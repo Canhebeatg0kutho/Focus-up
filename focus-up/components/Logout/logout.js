@@ -6,7 +6,7 @@ export default function Logout(){
     const router = useRouter()
     const handlePress = async(e) => {
         e.preventDefault();
-         await axios.get("http://3.211.182.247:3000/users/logout", {
+         await axios.get("http://3.211.182.247/users/logout", {
           withCredentials: true,
         });
        try {

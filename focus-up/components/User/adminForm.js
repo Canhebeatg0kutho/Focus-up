@@ -12,7 +12,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
         method: "post",
-        url:"http://localhost:3000/admin/login",
+        url:"http://3.211.182.247/admin/login",
         data:{
             username,
             password,

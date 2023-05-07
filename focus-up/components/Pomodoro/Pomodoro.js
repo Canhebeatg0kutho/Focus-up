@@ -12,7 +12,7 @@ export default function Pomodoro(){
 
 
     const fetchTimer = async (status) => {
-      const response = await fetch(`http://3.211.182.247:3000/timer/${status}`);
+      const response = await fetch(`http://3.211.182.247/timer/${status}`);
       const data = await response.json();
       setMinutes(data.minutes); // Set minutes from the response
       setSeconds(data.seconds); // Set seconds from the response
@@ -35,15 +35,10 @@ export default function Pomodoro(){
                 } 
                 //If minutes is 0 that means timer has ended, enter next state
                 else{
-                  //if display message is true, minutes is 24 if false, 4 
                   
                  fetchTimer(status)
-                  displayMessage ? setStatus("Work"):setStatus("Break")
-                  
-                  // let sec = 59;
+                  displayMessage ? (setStatus("Work"), alert("Break has ended")):(setStatus("Break"), alert("Time for a break"))
                    setPause(true);
-                  // setSeconds(sec);
-                  // setMinutes(min);
                   //Opposite of current displayMessage
                   setDisplayMessage(!displayMessage);
                 }

@@ -11,7 +11,7 @@ export default function SettingsButton(props) {
 }
   return (
     <div>
-        {isOpen && <Popup handleClose={togglePopup} content={<Settings/>} />}
+      {isOpen && <Popup handleClose={togglePopup} content={<Settings/>}/>}
       <button className={classes.SettingsButton} onClick={togglePopup} {...props}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
