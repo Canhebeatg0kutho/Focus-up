@@ -38,10 +38,10 @@ export default function Settings() {
   
   return (
     <div>
-      <div onSubmit={editTimer} className={classes.form}>
+      <div  className={classes.form}>
         <p className={classes.settingsTitle}>Settings for {title}</p>
+        <form onSubmit={editTimer}>
         <button className={classes.change} onClick={() => handleClick()}>
-          {" "}
           Change settings
         </button>
         <div className={classes.setTimes}>
@@ -52,7 +52,6 @@ export default function Settings() {
             value={newMinutes}
             onChange={(e) => setMinutes(e.target.value)}
           />
-
           <input
             type="text"
             className={classes.inputSec}
@@ -70,6 +69,7 @@ export default function Settings() {
         >
           Submit
         </button>
+        </form>
       </div>
     </div>
   );

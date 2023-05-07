@@ -9,6 +9,9 @@ export default function Form(){
     const [isRegister, setRegister] = useState(false)
     const router = useRouter()
 
+    const refresh = () => {
+        window.location.reload(true)
+      }
 const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
@@ -27,7 +30,7 @@ const handleSubmit = (e) => {
 
 useEffect(() => {
     if (isRegister) {
-        router.push('/home');
+        refresh()
     }
 }, [isRegister])
 
