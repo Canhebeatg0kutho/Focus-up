@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./pomo.module.css";
 
 export default function Settings() {
@@ -6,7 +6,10 @@ export default function Settings() {
   const [newSeconds, setSeconds] = useState("");
   const [newMinutes, setMinutes] = useState("");
   const [currentState, changeState] = useState(true);
-
+  const [submit, isSubmit] = useState(false);
+  const refresh = () => {
+    window.location.reload(true);
+  };
   const editTimer = async () => {
     await fetch("http://localhost:3000/timer/edit", {
       method: "PATCH",
@@ -26,35 +29,43 @@ export default function Settings() {
     changeState(!currentState);
     currentState ? setTitle("Work") : setTitle("Break");
   };
+
+  useEffect(() => {
+    if (submit) {
+      refresh();
+    }
+  });
+  
   return (
     <div>
-      <div className={classes.form}>
+      <div onSubmit={editTimer} className={classes.form}>
         <p className={classes.settingsTitle}>Settings for {title}</p>
         <button className={classes.change} onClick={() => handleClick()}>
           {" "}
           Change settings
         </button>
         <div className={classes.setTimes}>
-            <input
-              type="text"
-              className={classes.inputMin}
-              placeholder="Enter new minutes"
-              value={newMinutes}
-              onChange={(e) => setMinutes(e.target.value)}
-            />
+          <input
+            type="text"
+            className={classes.inputMin}
+            placeholder="Enter new minutes"
+            value={newMinutes}
+            onChange={(e) => setMinutes(e.target.value)}
+          />
 
-            <input
-              type="text"
-              className={classes.inputSec}
-              placeholder="Enter new seconds"
-              value={newSeconds}
-              onChange={(e) => setSeconds(e.target.value)}
-            />
+          <input
+            type="text"
+            className={classes.inputSec}
+            placeholder="Enter new seconds"
+            value={newSeconds}
+            onChange={(e) => setSeconds(e.target.value)}
+          />
         </div>
         <button
           className={classes.submit}
           onClick={async () => {
             editTimer();
+            isSubmit(true);
           }}
         >
           Submit
