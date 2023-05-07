@@ -11,7 +11,7 @@ const ToDoForm = ({ addTask }) => {
      //when input is submitted, the addTask prop passed down is called, it adds the current userInput when submit is entered. It then clears the input.
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await fetch(`http://localhost:3000/todo`, {
+        await fetch(`http://3.211.182.247/todo`, {
             method: "POST",
             Accept: "application/json",
             headers: {

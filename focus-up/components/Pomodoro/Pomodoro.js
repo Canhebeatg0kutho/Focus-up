@@ -12,7 +12,7 @@ export default function Pomodoro(){
 
 
     const fetchTimer = async (status) => {
-      const response = await fetch(`http://localhost:3000/timer/${status}`);
+      const response = await fetch(`http://3.211.182.247/timer/${status}`);
       const data = await response.json();
       setMinutes(data.minutes); // Set minutes from the response
       setSeconds(data.seconds); // Set seconds from the response

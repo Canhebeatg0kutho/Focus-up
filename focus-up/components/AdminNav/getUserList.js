@@ -10,7 +10,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
         method: "get",
-        url:"http://localhost:3000/users"
+        url:"http://3.211.182.247/users"
     }
     axios(configuration)
     .then((result) => {setuser(result.data)})

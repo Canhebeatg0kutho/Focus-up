@@ -16,7 +16,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     const configuration = {
         method: "post",
-        url:"http://localhost:3000/users/register",
+        url:"http://3.211.182.247/users/register",
         data:{
             username,
             password,
