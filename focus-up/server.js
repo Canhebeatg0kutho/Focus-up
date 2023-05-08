@@ -21,7 +21,7 @@ const db = mongoose.connection
 db.on('error',(error)=> console.error(error))
 db.once('open',()=> console.error('Connected to database'))
 
-app.use(cors({credentials:true,  origin: ['http://localhost:3001', 'http://3.211.182.247:3000:3001']}))
+app.use(cors({credentials:true,  origin: ['http://localhost:3001', 'http://3.211.182.247:3001']}))
 app.use(express.json())
 app.use(express.urlencoded({extended: true}));
 
