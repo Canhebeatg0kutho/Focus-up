@@ -13,7 +13,7 @@ export default function Settings() {
   const editTimer = async (e) => {
     e.preventDefault();
     try{
-      await fetch("http://localhost:3000/timer/edit", {
+      await fetch("http://3.211.182.247:3000/timer/edit", {
         method: "PATCH",
         Accept: "application/json",
         headers: {

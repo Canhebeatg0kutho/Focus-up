@@ -10,7 +10,7 @@ export default function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
   
-     await fetch("http://localhost:3000/users/login", {
+     await fetch("http://3.211.182.247:3000/users/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -22,7 +22,7 @@ export default function Form() {
         credentials: 'include'
       })
 
-      const res = await fetch("http://localhost:3000/users/protected-route", {
+      const res = await fetch("http://3.211.182.247:3000/users/protected-route", {
         method: 'GET',
         credentials: 'include'
       })

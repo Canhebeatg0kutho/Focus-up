@@ -12,13 +12,12 @@ function App() {
   const [ toDoList, setToDoList ] = useState([]);
   
 useEffect(() => {
-const configuration = {
-  method: "get",
-  url:"http://3.211.182.247:3000/todo"
-}
-axios(configuration)
-.then((result) => {setToDoList(result.data)})
-.catch((error) => {error = new Error();})
+  axios.get("http://3.211.182.247:3000/todo")
+  try{
+    setToDoList(result.data)
+  }catch(error){
+    console.log(error)
+  }
 console.log([toDoList])
 }, [])
 

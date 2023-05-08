@@ -5,7 +5,7 @@ export default function Logout(){
     const router = useRouter()
     const handlePress = async(e) => {
         e.preventDefault();
-         await fetch("http://localhost:3000/users/logout", {
+         await fetch("http://3.211.182.247:3000/users/logout", {
           credentials: 'include'
         })
        try {

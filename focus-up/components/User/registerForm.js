@@ -13,7 +13,7 @@ export default function Form(){
       }
       const handleSubmit = async(e) => {
         e.preventDefault();
-        await fetch("http://localhost:3000/users/register", {
+        await fetch("http://3.211.182.247:3000/users/register", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
