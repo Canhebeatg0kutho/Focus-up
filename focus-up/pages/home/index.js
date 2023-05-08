@@ -12,14 +12,15 @@ export default function Home() {
   const [data, setData] = useState(null);
 
    const fetchData = async() => {
+    try{
     const res = await axios.get("http://3.211.182.247:3000/users/protected-route", {
        withCredentials: true
     });
-    try{
+
       setData(res.data);
     }catch (err) {
         router.push('/');
-      }
+    }
    }
 
   useEffect(() => {
