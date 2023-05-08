@@ -1,14 +1,13 @@
 import Link from "next/link"
 import classes from "./logout.module.css"
 import { useRouter } from "next/router";
-import axios from "axios";
 export default function Logout(){
     const router = useRouter()
     const handlePress = async(e) => {
         e.preventDefault();
-         await axios.get("http://3.211.182.247:3000/users/logout", {
-          withCredentials: true,
-        });
+         await fetch("http://3.211.182.247:3000/users/logout", {
+          credentials: 'include'
+        })
        try {
            router.push('/')
         }

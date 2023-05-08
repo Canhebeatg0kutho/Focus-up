@@ -14,13 +14,17 @@ router.get("/:title", async (req, res) => {
 
 router.patch("/edit", async (req, res) => {
   try {
+    if (!req.body.minutes && !req.body.seconds) {
+      throw new Error("Both minutes and seconds are required");
+    }
+
     const edit = await Timer.findOneAndUpdate({title: req.body.title}, {
       minutes: req.body.minutes,
       seconds: req.body.seconds,
     },{ new: true });
     res.json([edit]);
   } catch (err) {
-    res.json({ message: err.message });
+   console.error(err)
   }
 });
 

@@ -12,18 +12,22 @@ export default function Settings() {
   };
   const editTimer = async (e) => {
     e.preventDefault();
-    await fetch("http://3.211.182.247:3000/timer/edit", {
-      method: "PATCH",
-      Accept: "application/json",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        minutes: newMinutes,
-        seconds: newSeconds,
-      }),
-    });
+    try{
+      await fetch("http://3.211.182.247:3000/timer/edit", {
+        method: "PATCH",
+        Accept: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          minutes: newMinutes,
+          seconds: newSeconds,
+        }),
+      });
+    }catch(error){
+      console.log(error)
+    }
   };
 
   const handleClick = () => {
