@@ -26,7 +26,7 @@ app.use(express.urlencoded({extended: true}));
 
 //-------------------------SESSION SETUP--------------------------//
 const store  = new MongoStore({
-  uri:'mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority',
+  uri:process.env.DATABASE_URL,
   collection:'sessionStore'
 })
 
