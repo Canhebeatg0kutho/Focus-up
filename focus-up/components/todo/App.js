@@ -50,7 +50,7 @@ console.log([toDoList])
   //This function takes in userInput from form class. Creates a copy of the toDoList Array, then sets the copy variable to include the existing array copied,
   // And adds a todo with an incremented id, a task which is assigned the userInput, and sets complete to false
   const addTask = async() => {
-    const updated = await axios.get("http://3.211.182.247:3000 :3000/todo")
+    const updated = await axios.get("http://3.211.182.247:3000/todo")
     setToDoList(updated.data);
   }
 
