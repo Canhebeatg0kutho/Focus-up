@@ -11,13 +11,13 @@ export default function Form(){
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await axios.post("http://3.211.182.247:3000/users/login", {
+        await axios.post("http://localhost:3000/users/login", {
           username,
           password,
         }, {
           withCredentials: true,
         })
-        const res = await axios.get("http://3.211.182.247:3000/users/protected-route", {
+        const res = await axios.get("http://localhost:3000/users/protected-route", {
           withCredentials: true,
         });
        try {

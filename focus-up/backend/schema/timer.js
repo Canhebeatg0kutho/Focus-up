@@ -6,9 +6,11 @@ const TimerSchema = new Mongoose.Schema({
     },
     minutes:{
         type:Number,
+        required:true
     },
     seconds: {
         type:Number,
+        required:true
     },
 })
 const Timer = Mongoose.model("timer",TimerSchema)
