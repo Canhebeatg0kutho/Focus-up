@@ -9,7 +9,7 @@ import Create from "../../components/NotesFunctions/create";
 import Update from "../../components/NotesFunctions/update";
 
 export const getStaticProps = async () => {
-  const res = await fetch("http://3.211.182.247/notes");
+  const res = await fetch("http://3.211.182.247:3000/notes");
   const data = await res.json();
 
   return {
@@ -24,7 +24,7 @@ export default function Notes({ notes }) {
   }
   const deleteNote = async (deleteTitle) => {
     try {
-      await fetch(`http://3.211.182.247/notes/delete/title/${deleteTitle}`, {
+      await fetch(`http://3.211.182.247:3000/notes/delete/title/${deleteTitle}`, {
         method: "DELETE",
         Accept: "application/json",
         headers: {

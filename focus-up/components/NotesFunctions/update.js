@@ -7,7 +7,7 @@ export default function Update(){
     const [newTitle, setNew] = useState("");
       
   const changeTitle = async (titleChange) => {
-    await fetch(`http://3.211.182.247/notes/update/title/${titleChange}`, {
+    await fetch(`http://3.211.182.247:3000/notes/update/title/${titleChange}`, {
       method: "PATCH",
       Accept: "application/json",
       headers: {

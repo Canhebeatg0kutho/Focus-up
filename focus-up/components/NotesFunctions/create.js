@@ -9,7 +9,7 @@ export default function Create(){
     const [titleText, setTitle] = useState("");
     const addNote =
         async () => {
-          await fetch(`http://3.211.182.247/notes/create`, {
+          await fetch(`http://3.211.182.247:3000/notes/create`, {
             method: "POST",
             Accept: "application/json",
             headers: {

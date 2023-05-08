@@ -1,4 +1,4 @@
-POST http://3.211.182.247/register
+POST http://3.211.182.247:3000/register
 Content-Type:  application/json
 
 {
