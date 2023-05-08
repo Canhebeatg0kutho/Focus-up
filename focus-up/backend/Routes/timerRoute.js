@@ -24,7 +24,7 @@ router.patch("/edit", async (req, res) => {
     },{ new: true });
     res.json([edit]);
   } catch (err) {
-    res.json({ message: err.message });
+   console.error(err)
   }
 });
 

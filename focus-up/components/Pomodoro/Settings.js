@@ -12,36 +12,28 @@ export default function Settings() {
   };
   const editTimer = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3000/timer/edit", {
-      method: "PATCH",
-      Accept: "application/json",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: title,
-        minutes: newMinutes,
-        seconds: newSeconds,
-      }),
-    });
+    try{
+      await fetch("http://localhost:3000/timer/edit", {
+        method: "PATCH",
+        Accept: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: title,
+          minutes: newMinutes,
+          seconds: newSeconds,
+        }),
+      });
+    }catch(error){
+      console.log(error)
+    }
   };
 
   const handleClick = () => {
     changeState(!currentState);
     currentState ? setTitle("Work") : setTitle("Break");
   };
-
-  // const fetchTimer = async (title) => {
-  //   const response = await fetch(`http://localhost:3000/timer/${title}`);
-  //   const data = await response.json();
-  //   setMinutes(data.minutes); // Set minutes from the response
-  //   setSeconds(data.seconds); // Set seconds from the response
-  // };
-
-  // useEffect(() => {
-  //   fetchTimer(title); // Call fetchTimer with status parameter
-  // }, [title]);
-
 
   useEffect(() => {
     if (submit) {
