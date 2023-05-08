@@ -10,15 +10,19 @@ import Title from "./title"
 function App() {
   //State initialised to whatever is inside data json
   const [ toDoList, setToDoList ] = useState([]);
+
+  const fetchTasks = async() => {
+    await axios.get("http://3.211.182.247:3000/todo")
+    try{
+      setToDoList(result.data)
+    }catch(error){
+      console.log(error)
+    }
+  console.log([toDoList])
+  }
   
 useEffect(() => {
-  axios.get("http://3.211.182.247:3000/todo")
-  try{
-    setToDoList(result.data)
-  }catch(error){
-    console.log(error)
-  }
-console.log([toDoList])
+ fetchTasks()
 }, [])
 
   //Pass in id of todo clicked
