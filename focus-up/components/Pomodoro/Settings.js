@@ -10,7 +10,8 @@ export default function Settings() {
   const refresh = () => {
     window.location.reload(true);
   };
-  const editTimer = async () => {
+  const editTimer = async (e) => {
+    e.preventDefault();
     await fetch("http://3.211.182.247:3000/timer/edit", {
       method: "PATCH",
       Accept: "application/json",
@@ -34,7 +35,7 @@ export default function Settings() {
     if (submit) {
       refresh();
     }
-  });
+  },[submit]);
   
   return (
     <div>
