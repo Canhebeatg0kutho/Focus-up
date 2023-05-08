@@ -12,7 +12,7 @@ function App() {
   const [ toDoList, setToDoList ] = useState([]);
 
   const fetchTasks = async() => {
-    await axios.get("http://3.211.182.247:3000/todo")
+    const result = await axios.get("http://3.211.182.247:3000/todo")
     try{
       setToDoList(result.data)
     }catch(error){
