@@ -1,6 +1,5 @@
 import classes from "./buttons.module.css"
 import { useState, useEffect } from "react"
-import axios from "axios"
 import { useRouter } from "next/router"
 
 export default function Form(){
@@ -12,21 +11,26 @@ export default function Form(){
     const refresh = () => {
         window.location.reload(true)
       }
-const handleSubmit = (e) => {
-    e.preventDefault();
-    const configuration = {
-        method: "post",
-        url:"http://3.211.182.247:3000/users/register",
-        data:{
-            username,
-            password,
-        }
+      const handleSubmit = async(e) => {
+        e.preventDefault();
+        await fetch("http://localhost:3000/users/register", {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              username,
+              password
+            }),
+          })
+          try{
+            setRegister(true)
+          }catch(error){
+            console.log(error)
+          }
+        
     }
-    axios(configuration)
-    .then((result) => {setRegister(true);})
-    .catch((error) => {error = new Error();})
     
-}
 
 useEffect(() => {
     if (isRegister) {

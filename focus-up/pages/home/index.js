@@ -11,18 +11,18 @@ export default function Home() {
   const router = useRouter();
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const res = await axios.get("http://localhost:3000/users/protected-route", {
-          withCredentials: true,
-        });
-        setData(res.data);
-        
-      } catch (err) {
+   const fetchData = async() => {
+    const res = await axios.get("http://localhost:3000/users/protected-route", {
+       withCredentials: true
+    });
+    try{
+      setData(res.data);
+    }catch (err) {
         router.push('/');
       }
-    }
+   }
+
+  useEffect(() => {
     fetchData();
   }, []);
 
