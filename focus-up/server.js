@@ -1,6 +1,4 @@
-if(process.env.NODE_ENV !=='production'){
-  require('dotenv').config
-}
+require('dotenv').config()
 const express = require("express")
 const { default: mongoose } = require("mongoose")
 const app = express()
@@ -15,7 +13,7 @@ require('./backend/passport/passport')
 
 
 
-mongoose.connect('mongodb+srv://RStephens:focusup@cluster0.huesiav.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.DATABASE_URL)
 
 const db = mongoose.connection
 db.on('error',(error)=> console.error(error))
